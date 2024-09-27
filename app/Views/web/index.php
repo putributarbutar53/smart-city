@@ -2,8 +2,8 @@
 
 <?php $this->section('content') ?>
 <div class="service-area tp-grey-insu-2 p-relative pt-115 pb-90">
-    <img class="tp-service-shape-insu up-down p-absolute" src="<?= base_url() ?>assets/img/service/round-shape.png" alt="shape">
-    <img class="tp-service-shape-insu-2 d-none d-sm-block up-down p-absolute" src="<?= base_url() ?>assets/img/service/round-shape-2.png" alt="shape">
+    <img class="tp-service-shape-insu up-down p-absolute" src="<?= base_url() ?>asset/img/service/round-shape.png" alt="shape">
+    <img class="tp-service-shape-insu-2 d-none d-sm-block up-down p-absolute" src="<?= base_url() ?>asset/img/service/round-shape-2.png" alt="shape">
     <div class="container">
         <div class="row gx-0">
             <div class="col-12">
@@ -15,7 +15,7 @@
                 <div class="tp-service-insu-wrapper text-center mb-30 wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s">
                     <div class="tp-service-insu-inner">
                         <div class="tp-service-insu-btn p-relative">
-                            <img src="<?= base_url() ?>assets/img/service/eco-house.png" alt="service-btn" width="100" height="100">
+                            <img src="<?= base_url() ?>asset/img/service/eco-house.png" alt="service-btn" width="100" height="100">
                         </div>
                         <div class="tp-service-insu-cont">
                             <h3 class="tp-service-insu-title"><a href="service-details.html">Smart Living</a></h3>
@@ -32,7 +32,7 @@
                 <div class="tp-service-insu-wrapper text-center mb-30 wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s">
                     <div class="tp-service-insu-inner">
                         <div class="tp-service-insu-btn p-relative">
-                            <img src="<?= base_url() ?>assets/img/service/save-the-planet.png" alt="service-btn" width="100" height="100">
+                            <img src="<?= base_url() ?>asset/img/service/save-the-planet.png" alt="service-btn" width="100" height="100">
                         </div>
                         <div class="tp-service-insu-cont">
                             <h3 class="tp-service-insu-title"><a href="service-details.html">Smart Environment</a></h3>
@@ -49,7 +49,7 @@
                 <div class="tp-service-insu-wrapper text-center mb-30 wow fadeInUp" data-wow-delay=".7s" data-wow-duration="1s">
                     <div class="tp-service-insu-inner">
                         <div class="tp-service-insu-btn p-relative">
-                            <img src="<?= base_url() ?>assets/img/service/branding.png" alt="service-btn" width="100" height="100">
+                            <img src="<?= base_url() ?>asset/img/service/branding.png" alt="service-btn" width="100" height="100">
                         </div>
                         <div class="tp-service-insu-cont">
                             <h3 class="tp-service-insu-title"><a href="service-details.html">Smart Branding</a></h3>
