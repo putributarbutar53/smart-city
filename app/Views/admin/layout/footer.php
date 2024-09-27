@@ -1,7 +1,7 @@
 <footer>
     <div class="row no-gutters justify-content-between fs--1 mt-2 mb-3">
         <div class="col-12 col-sm-auto text-center">
-            <p class="mb-0 text-600">Copyright &copy; 2024 - Putri & Kevin<sup>&reg;</sup> - all rights reserved
+            <p class="mb-0 text-600">Copyright &copy; 2024 - Diskominfo Toba<sup>&reg;</sup> - all rights reserved
                 <?php if (session()->get('admin_role') == 'superadmin') : ?>
                     <span class="badge badge-danger text-white px-1">Super Admin</span>
                 <?php else : ?>

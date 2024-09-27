@@ -30,22 +30,6 @@
         </div>
     </div>
 </div>
-<?php if ((session()->get('admin_role') == 'superadmin') || (session()->get('admin_role') == 'admin')) { ?>
-    <div class="card mb-3">
-        <div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(<?= base_url() ?>/assets/img/illustrations/corner-4.png);">
-        </div>
-        <!--/.bg-holder-->
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-12">
-                </div>
-            </div>
-        </div>
-    </div>
-<?php } ?>
-<div class="card mb-3">
-
-</div>
 
 
 <div class="card mb-3">
@@ -59,11 +43,13 @@
     <div class="card-body pt-0">
         <div class="container">
             <div class="row">
+                <div class="col-sm"><a href="<?= site_url('admin2053/category') ?>"><img src="<?= base_url() ?>assets/icon/categories.png" style="width: 70px; height: 70px;" /></a><br />Kategori</div>
                 <?php if (session()->get('admin_role') == 'superadmin') { ?>
-                    <div class="col-sm"><a href="<?= site_url('admin2053/admin') ?>"><img src="<?= base_url() ?>assets/icon/1797890_86.png" /></a><br />Admin</div>
+                    <div class="col-sm"><a href="<?= site_url('admin2053/layanan') ?>"><img src="<?= base_url() ?>assets/icon/provider.png" style="width: 70px; height: 70px;" /></a><br />Layanan</div>
                 <?php } ?>
-                <div class="col-sm"><a href="<?= site_url('admin2053/profile') ?>"><img src="<?= base_url() ?>assets/icon/1797890_64.png" /></a><br />Ubah Password</div>
-                <div class="col-sm"><a href="<?= site_url('admin2053/Login/logout') ?>"><img src="<?= base_url() ?>assets/icon/1797890_46.png" /></a><br />Logout</div>
+                <div class="col-sm"><a href="<?= site_url('admin2053/sasaran') ?>"><img src="<?= base_url() ?>assets/icon/target.png" style="width: 70px; height: 70px;" /></a><br />Sasaran</div>
+                <div class="col-sm"><a href="<?= site_url('admin2053/hasil') ?>"><img src="<?= base_url() ?>assets/icon/evaluation.png" style="width: 70px; height: 70px;" /></a><br />Hasil</div>
+                <div class="col-sm"><a href="<?= site_url('admin2053/Login/logout') ?>"><img src="<?= base_url() ?>assets/icon/power.png" style="width: 70px; height: 70px;" /></a><br />Logout</div>
             </div>
         </div>
     </div>

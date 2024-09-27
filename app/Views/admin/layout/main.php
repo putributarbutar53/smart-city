@@ -154,7 +154,7 @@
             }
         }
     </script>
-   
+
     <?= $this->renderSection('script') ?>
 </body>
 
