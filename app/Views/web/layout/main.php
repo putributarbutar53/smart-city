@@ -11,22 +11,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Place favicon.ico in the root directory -->
-    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>assets/img/logo/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>asset/img/logo/favicon.ico">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMp5aUq1fZP8t94zOB/2bL8WaiD5u15GVy3cZc" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/animate.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/swiper-bundle.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/font-awesome-pro.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/flaticon.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/spacing.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/ion.rangeSlider.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/main.css">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/css/bootstrap.css">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/css/animate.css">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/css/swiper-bundle.css">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/css/magnific-popup.css">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/css/font-awesome-pro.css">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/css/flaticon.css">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/css/spacing.css">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/css/ion.rangeSlider.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/css/main.css">
     <style>
         .hidden {
             display: none;
+        }
+
+        .tp-service-insu-inner {
+            height: 400px;
+            /* Tentukan tinggi tetap */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tp-service-insu-cont {
+            flex-grow: 1;
+            /* Mengisi ruang kosong */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tp-service-insu-icon-2 {
+            margin-top: auto;
+            /* Pastikan elemen ini diposisikan di bawah */
         }
     </style>
 </head>
@@ -60,7 +80,7 @@
             </div>
             <div class="tpoffcanvas__logo">
                 <a href="index-2.html">
-                    <img src="<?= base_url() ?>assets/img/logo/logo5.png" alt="logo">
+                    <img src="<?= base_url() ?>asset/img/logo/logo5.png" alt="logo">
                 </a>
             </div>
             <div class="tp-main-menu-mobile d-xl-none"></div>
@@ -132,19 +152,19 @@
     <?= $this->include('web/layout/footer') ?>
     <!-- footer-area-end -->
     <!-- JS here -->
-    <script src="<?= base_url() ?>assets/js/vendor/jquery.js"></script>
-    <script src="<?= base_url() ?>assets/js/vendor/waypoints.js"></script>
-    <script src="<?= base_url() ?>assets/js/bootstrap-bundle.js"></script>
-    <script src="<?= base_url() ?>assets/js/meanmenu.js"></script>
-    <script src="<?= base_url() ?>assets/js/swiper-bundle.js"></script>
-    <script src="<?= base_url() ?>assets/js/ion.rangeSlider.min.js"></script>
-    <script src="<?= base_url() ?>assets/js/magnific-popup.js"></script>
-    <script src="<?= base_url() ?>assets/js/nice-select.js"></script>
-    <script src="<?= base_url() ?>assets/js/jquery.counterup.min.js"></script>
-    <script src="<?= base_url() ?>assets/js/one-page-nav-min.js"></script>
-    <script src="<?= base_url() ?>assets/js/wow.js"></script>
-    <script src="<?= base_url() ?>assets/js/ajax-form.js"></script>
-    <script src="<?= base_url() ?>assets/js/main.js"></script>
+    <script src="<?= base_url() ?>asset/js/vendor/jquery.js"></script>
+    <script src="<?= base_url() ?>asset/js/vendor/waypoints.js"></script>
+    <script src="<?= base_url() ?>asset/js/bootstrap-bundle.js"></script>
+    <script src="<?= base_url() ?>asset/js/meanmenu.js"></script>
+    <script src="<?= base_url() ?>asset/js/swiper-bundle.js"></script>
+    <script src="<?= base_url() ?>asset/js/ion.rangeSlider.min.js"></script>
+    <script src="<?= base_url() ?>asset/js/magnific-popup.js"></script>
+    <script src="<?= base_url() ?>asset/js/nice-select.js"></script>
+    <script src="<?= base_url() ?>asset/js/jquery.counterup.min.js"></script>
+    <script src="<?= base_url() ?>asset/js/one-page-nav-min.js"></script>
+    <script src="<?= base_url() ?>asset/js/wow.js"></script>
+    <script src="<?= base_url() ?>asset/js/ajax-form.js"></script>
+    <script src="<?= base_url() ?>asset/js/main.js"></script>
     <?= $this->renderSection('script') ?>
 </body>
 

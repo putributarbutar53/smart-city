@@ -37,4 +37,13 @@ class KategoriModel extends Model
 
         return $this->find($id); // Mengembalikan kategori berdasarkan id
     }
+    public function getAllKategori()
+    {
+        return $this->findAll(); // Mengambil semua kategori
+    }
+
+    public function getKategoriById($id)
+    {
+        return $this->find($id); // Mengambil kategori berdasarkan id
+    }
 }

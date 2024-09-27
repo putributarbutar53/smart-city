@@ -27,6 +27,10 @@ class LayananModel extends Model
             'max_length' => 'Nama layanan maksimal 255 karakter',
         ],
     ];
+    public function getLayananByKategoriId($id_kategori)
+    {
+        return $this->where('id_kategori', $id_kategori)->findAll();
+    }
 
     // Anda bisa menambahkan metode tambahan sesuai kebutuhan
 }

@@ -86,10 +86,10 @@
                                 <img src="<?= base_url() . getenv('dir.uploads.category') . $item['img'] ?>" alt="service-btn" width="100" height="100">
                             </div>
                             <div class="tp-service-insu-cont">
-                                <h3 class="tp-service-insu-title"><a href="service-details.html"><?= $item['nama'] ?></a></h3>
+                                <h3 class="tp-service-insu-title"><a href="<?= site_url('form/' . $item['id']) ?>"><?= $item['nama'] ?></a></h3>
                                 <p class="tp-service-insu-para"><?= $item['desc'] ?></p>
                                 <div class="tp-service-insu-icon-2">
-                                    <a href="service-details.html"><i class="flaticon-next"></i></a>
+                                    <a href="<?= site_url('form/' . $item['id']) ?>"><i class="flaticon-next"></i></a>
                                 </div>
                             </div>
                         </div>

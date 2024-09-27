@@ -7,7 +7,8 @@
              <div class="col-lg-12">
                  <div class="tp-contact-form-2">
                      <h6 class="tp-contact-form-title-2 mb-40 wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s" style="margin-top: -50px;">Kuesioner Evaluasi Implementasi Smart City</h6>
-                     <p style="margin-top: -20px;">Smart Governance</p>
+
+                     <p style="margin-top: -20px;"><?= esc($kategori['nama']) ?></p>
                      <form id="form-kuisioner" action="https://html.hixstudio.net/alizo-prev/alizo/assets/mail.php" method="POST" class="wow fadeInUp" data-wow-delay=".4s" data-wow-duration="1s">
                          <div class="row" id="data-diri">
                              <div class="col-lg-12 mb-20">
@@ -59,15 +60,15 @@
                                  <div class="tp-contact-single-input">
                                      <label style="font-weight: bold; margin-bottom: 5px;">Pilih Layanan/Program:</label>
                                      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                                         <label style="display: flex; align-items: center;">
-                                             <input type="checkbox" name="nama_layanan[]" value="Layanan 1" style="margin-right: 5px;"> Layanan 1
-                                         </label>
-                                         <label style="display: flex; align-items: center;">
-                                             <input type="checkbox" name="nama_layanan[]" value="Layanan 2" style="margin-right: 5px;"> Layanan 2
-                                         </label>
-                                         <label style="display: flex; align-items: center;">
-                                             <input type="checkbox" name="nama_layanan[]" value="Layanan 3" style="margin-right: 5px;"> Layanan 3
-                                         </label>
+                                         <?php if (!empty($layanan)): ?>
+                                             <?php foreach ($layanan as $item): ?>
+                                                 <label style="display: flex; align-items: center;">
+                                                     <input type="checkbox" name="nama_layanan[]" value="<?= $item['n_layanan']; ?>" style="margin-right: 5px;"> <?= $item['n_layanan']; ?>
+                                                 </label>
+                                             <?php endforeach; ?>
+                                         <?php else: ?>
+                                             <p>Tidak ada layanan yang tersedia untuk kategori ini.</p>
+                                         <?php endif; ?>
                                          <label style="display: flex; align-items: center;">
                                              <input type="checkbox" name="nama_layanan[]" value="Lainnya" style="margin-right: 5px;" id="lainnya-checkbox"> Lainnya
                                          </label>
@@ -81,12 +82,15 @@
                                  <div class="tp-contact-single-input">
                                      <label style="font-weight: bold; margin-bottom: 5px;">Pilih Sasaran Layanan/Program:</label>
                                      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                                         <label style="display: flex; align-items: center;">
-                                             <input type="checkbox" name="sasaran_layanan[]" value="Sasaran 1" style="margin-right: 5px;"> ASN
-                                         </label>
-                                         <label style="display: flex; align-items: center;">
-                                             <input type="checkbox" name="sasaran_layanan[]" value="Sasaran 2" style="margin-right: 5px;"> Masyarakat
-                                         </label>
+                                         <?php if (!empty($sasaran)): ?>
+                                             <?php foreach ($sasaran as $item): ?>
+                                                 <label style="display: flex; align-items: center;">
+                                                     <input type="checkbox" name="sasaran_layanan[]" value="<?= $item['n_sasaran']; ?>" style="margin-right: 5px;"> <?= $item['n_sasaran']; ?>
+                                                 </label>
+                                             <?php endforeach; ?>
+                                         <?php else: ?>
+                                             <p>Tidak ada sasaran yang tersedia untuk kategori ini.</p>
+                                         <?php endif; ?>
                                          <label style="display: flex; align-items: center;">
                                              <input type="checkbox" name="sasaran_layanan[]" value="Lainnya" style="margin-right: 5px;" id="sasaran-lainnya-checkbox"> Lainnya
                                          </label>
@@ -94,7 +98,6 @@
                                      </div>
                                  </div>
                              </div>
-
                              <!-- Selfie -->
                              <div class="col-lg-12 mb-20">
                                  <label style="font-weight: bold; margin-bottom: 5px;">Ambil Selfie: </label>
