@@ -152,8 +152,8 @@
     <?= $this->include('web/layout/footer') ?>
     <!-- footer-area-end -->
     <!-- JS here -->
-    <script src="<?= base_url() ?>asset/js/vendor/jquery.js"></script>
-    <script src="<?= base_url() ?>asset/js/vendor/waypoints.js"></script>
+    <script src="<?= base_url() ?>asset/js/vendors/jquery.js"></script>
+    <script src="<?= base_url() ?>asset/js/vendors/waypoints.js"></script>
     <script src="<?= base_url() ?>asset/js/bootstrap-bundle.js"></script>
     <script src="<?= base_url() ?>asset/js/meanmenu.js"></script>
     <script src="<?= base_url() ?>asset/js/swiper-bundle.js"></script>
