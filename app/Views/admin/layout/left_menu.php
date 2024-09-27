@@ -22,6 +22,28 @@
                 <div class="navbar-vertical-divider">
                     <hr class="navbar-vertical-hr my-2" />
                 </div>
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-item<?php if (current_url() === site_url('admin2053/layanan')) { ?> active<?php } ?>">
+                        <a class="nav-link" href="<?php echo site_url('admin2053/layanan') ?>">
+                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-service"></span></span><span class="nav-link-text">Layanan</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <div class="navbar-vertical-divider">
+                    <hr class="navbar-vertical-hr my-2" />
+                </div>
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-item<?php if (current_url() === site_url('admin2053/sasaran')) { ?> active<?php } ?>">
+                        <a class="nav-link" href="<?php echo site_url('admin2053/sasaran') ?>">
+                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-target"></span></span><span class="nav-link-text">Layanan</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <div class="navbar-vertical-divider">
+                    <hr class="navbar-vertical-hr my-2" />
+                </div>
                 <?php if (session()->get('admin_role') == 'superadmin') { ?>
                     <ul class="navbar-nav flex-column">
                         <li class="nav-item<?php if (current_url() === site_url('admin2053/admin')) { ?> active<?php } ?>"><a class="nav-link" href="<?= site_url('admin2053/admin') ?>">
