@@ -25,8 +25,7 @@ class Bagian extends BaseController
     {
         $request = service('request');
 
-        // Mendapatkan id_kategori dari request
-        $id_kategori = $request->getVar('id_kategori'); // Sesuaikan ini sesuai dengan metode pengiriman
+        $id_kategori = $request->getVar('id_kategori');
 
         $draw = $request->getVar('draw');
         $row = $request->getVar('start');
