@@ -19,6 +19,13 @@ class Category extends BaseController
     {
         echo view('admin/category/index');
     }
+    function bagian($id_kategori)
+    {
+        $detail = $this->model->find($id_kategori);
+        $data['detail'] = $detail;
+
+        echo view('admin/dimensi/index', $data);
+    }
     function loaddata()
     {
 
@@ -100,90 +107,79 @@ class Category extends BaseController
     function submitdata()
     {
         $action = $this->request->getVar('action');
+
+        // Validasi input
         $rules = [
-            'name' => [
+            'nama' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Nama harus diisi'
+                    'required' => 'Kolom Nama harus diisi'
                 ]
             ],
+            'img' => [
+                'rules' => 'max_size[img,2048]|ext_in[img,jpg,jpeg,png]',
+                'errors' => [
+                    'max_size' => 'Ukuran file terlalu besar, maksimal 2MB',
+                    'ext_in' => 'Tipe file harus berupa gambar (jpg, jpeg, png)'
+                ]
+            ]
         ];
 
         if (!$this->validate($rules)) {
-            // If validation fails, return the validation errors as JSON
+            // Jika validasi gagal, kembalikan kesalahan dalam bentuk JSON
             $errors = $this->validator->getErrors();
             return $this->respond(['errors' => $errors], 400);
         }
 
+        // Ambil data dari request
+        $requestData = $this->request->getPost();
+
+        // Escape data untuk menghindari injection
+        $requestData = esc($requestData);
+
+        // Proses gambar
+        $image = $this->request->getFile('img');
+        if ($image && $image->isValid()) {
+            // Generate nama acak untuk gambar
+            $newName = $image->getRandomName();
+            // Pindahkan file ke direktori yang ditentukan
+            $image->move(ROOTPATH . 'public/' . getenv('dir.uploads.category'), $newName);
+            // Simpan nama file ke dalam array data
+            $requestData['img'] = esc($newName);
+        }
 
         switch ($action) {
             case "add":
-                $rulesAdd = [
-                    'name' => [
-                        'rules' => 'required',
-                        'errors' => [
-                            'required' => 'Nama harus diisi'
-                        ]
-                    ],
-                ];
-
-                if (!$this->validate($rulesAdd)) {
-                    // If validation fails, return the validation errors as JSON
-                    $errorsAdd = $this->validator->getErrors();
-                    return $this->respond(['errors' => $errorsAdd], 400);
-                }
-
-                // Get the data from the request, such as POST data
-                $requestData = array(
-                    'name' => $this->request->getVar('name'),
-                );
-
-                // Insert the data into the database using the model
+                // Simpan data baru
                 $this->model->insert($requestData);
 
-                // Return a JSON response
+                // Kembalikan respon sukses
                 return $this->respond([
                     'status' => 'success',
-                    'message' => 'Data inserted successfully'
+                    'message' => 'Data berhasil ditambahkan'
                 ], 200);
 
             case "update":
-                // Get the data from the request, such as POST data
-                $requestData = [
-                    'name' => $this->request->getVar('name'),
-                ];
+                $detail = $this->model->find($this->request->getPost('id'));
 
-                $detail = $this->model->find($this->request->getVar('id'));
-
-                $rules = [
-                    'name' => [
-                        'rules' => 'required',
-                        'errors' => [
-                            'required' => 'Nama harus diisi'
-                        ]
-                    ],
-                ];
-
-                if ($detail['name'] != $requestData['name']) {
-                    $rules['name']['rules'] .= '|is_unique[kategori.name]';
+                if (!$detail) {
+                    return $this->respond([
+                        'status' => 'error',
+                        'message' => 'Data tidak ditemukan'
+                    ], 404);
                 }
 
-                if (!$this->validate($rules)) {
-                    // If validation fails, return the validation errors as JSON
-                    $errorsUpdate = $this->validator->getErrors();
-                    return $this->respond(['errors' => $errorsUpdate], 400);
-                }
-
-                // Update the data in the database using the model
+                // Perbarui data yang ada
                 $this->model->update($detail['id'], $requestData);
 
-                // Return a JSON response
+                // Kembalikan respon sukses
                 return $this->respond([
                     'status' => 'success',
-                    'message' => 'Data updated successfully'
+                    'message' => 'Data berhasil diperbarui'
                 ], 200);
         }
     }
+
     function delete($id)
     {
         $deleted = $this->model->delete($id);

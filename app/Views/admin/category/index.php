@@ -33,7 +33,8 @@
                     <thead class="bg-200">
                         <tr>
                             <th><b>Category</b></th>
-                            <th><b>Deskripsi</b></th>
+                            <th style="white-space: normal; word-wrap: break-word;"><b>Deskripsi</b></th>
+                            <th><b>Img</b></th>
                             <th data-orderable="false"><b>#</b></th>
                         </tr>
                     </thead>
@@ -69,6 +70,19 @@
                 },
                 {
                     data: 'desc',
+                    title: 'Deskripsi',
+                    width: '400px', // Tentukan lebar kolom
+                    render: function(data, type, row) {
+                        return '<div style="white-space: normal; word-wrap: break-word;">' + data + '</div>';
+                    }
+                },
+                {
+                    data: 'img',
+                    render: function(data, type, row) {
+                        if (row.img != '')
+                            return '<a href="<?= base_url() . getenv('dir.uploads.category') ?>' + row.img + '" data-fancybox data-caption="' + row.nama + '"><img class="rounded" width="80" src="<?= base_url() . getenv('dir.uploads.category') ?>' + row.img + '" alt="' + row.nama + '"></a>';
+                        else return "----";
+                    }
                 },
                 {
                     data: 'navButton',
