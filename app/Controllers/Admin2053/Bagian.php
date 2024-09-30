@@ -73,17 +73,17 @@ class Bagian extends BaseController
     }
     public function add($id_kategori = null)
     {
-        $data['title'] = "Tambah Category";
+        $data['title'] = "Tambah Sub Dimensi";
         $data['detail'] = $id_kategori ? $this->kategori->find($id_kategori) : []; // Mengambil detail kategori jika id_kategori ada
         $data['action'] = "add"; // Atur aksi yang sesuai (tambah/edit)
         $data['alert'] = ""; // Pesan alert, jika ada
-        $data['tombol'] = "+ Tambah Category"; // Teks tombol
+        $data['tombol'] = "+ Tambah Sub Dimensi"; // Teks tombol
         echo view('admin/dimensi/form', $data); // Tampilkan view form
     }
 
     function edit($id)
     {
-        $data['title'] = "Edit Data Category";
+        $data['title'] = "Edit Data Sub Dimensi";
         $data['detail'] = $this->model->find($id);
         $data['action'] = "update";
         $data['alert'] = "";

@@ -21,7 +21,7 @@
     <div class="card-header">
         <div class="row flex-between-center">
             <div class="col">
-                <button class="btn btn-primary" onclick="adddata()"><i class="fas fa-plus-square"></i> Tambah Layanan</button>
+                <button class="btn btn-primary" onclick="adddata()"><i class="fas fa-plus-square"></i> Tambah Sub Dimensi</button>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
                     <thead class="bg-200">
                         <tr>
                             <th><b>No.</b></th>
-                            <th><b>Layanan</b></th>
+                            <th><b>Sub Dimensi</b></th>
                             <th data-orderable="false"><b>#</b></th>
                         </tr>
                     </thead>

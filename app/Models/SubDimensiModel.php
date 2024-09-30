@@ -23,4 +23,8 @@ class SubDimensiModel extends Model
     {
         return $this->where('id_kategori', $id_kategori)->findAll(); // Mengambil sub dimensi berdasarkan kategori
     }
+    public function getSubDimensiByKategoriId($id_kategori)
+    {
+        return $this->where('id_kategori', $id_kategori)->findAll(); // Sesuaikan dengan nama kolom dan logika yang Anda gunakan
+    }
 }

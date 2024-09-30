@@ -1,7 +1,10 @@
  <?php $this->extend('web/layout/main') ?>
 
  <?php $this->section('content') ?>
+
+
  <div class="tp-contact-form-area pb-120">
+
      <div class="container">
          <div class="row">
              <div class="col-lg-12">
@@ -135,6 +138,21 @@
 
                          <div id="kuisioner" class="hidden">
                              <p>Kuesioner ini mengukur persepsi Anda sebagai masyarakat terhadap implementasi program smart city yang dilaksanakan oleh Pemerintah Daerah. Silakan klik angka dengan skala nilai yang sesuai. (1 = “Tidak Setuju”; 2 = “Kurang Setuju”; 3 = “Setuju”; dan 4 = “Sangat Setuju”; atau 9 bila tidak menjawab)</p>
+                             <?php
+                                // Array untuk mengonversi angka ke angka Romawi
+                                $roman_numbers = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']; // Tambah lebih banyak jika diperlukan
+                                ?>
+                             <?php if (!empty($sub_dimensi)): ?>
+                                 <?php foreach ($sub_dimensi as $index => $dimensi): ?>
+                                     <label style="font-weight: bold; margin-bottom: 5px;">
+                                         Sub Dimensi <?= isset($roman_numbers[$index]) ? $roman_numbers[$index] : ($index + 1) ?>: <?= esc($dimensi['sub_dimensi']) ?>
+                                     </label>
+                                     <br>
+                                 <?php endforeach; ?>
+                             <?php else: ?>
+                                 <label style="font-weight: bold; margin-bottom: 5px;">Sub Dimensi: Tidak ada sub dimensi yang tersedia.</label>
+                             <?php endif; ?>
+                             <br>
 
                              <div class="col-lg-12 mb-20">
                                  <label style="font-weight: bold; margin-bottom: 5px;">1. Menurut saya, layanan/program dapat diakses secara daring/online</label>
