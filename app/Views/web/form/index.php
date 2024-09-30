@@ -142,43 +142,57 @@
                                 // Array untuk mengonversi angka ke angka Romawi
                                 $roman_numbers = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']; // Tambah lebih banyak jika diperlukan
                                 ?>
+
                              <?php if (!empty($sub_dimensi)): ?>
                                  <?php foreach ($sub_dimensi as $index => $dimensi): ?>
                                      <label style="font-weight: bold; margin-bottom: 5px;">
                                          Sub Dimensi <?= isset($roman_numbers[$index]) ? $roman_numbers[$index] : ($index + 1) ?>: <?= esc($dimensi['sub_dimensi']) ?>
                                      </label>
                                      <br>
+
+                                     <!-- Looping pertanyaan untuk sub dimensi ini -->
+                                     <?php if (!empty($dimensi['pertanyaan'])): ?>
+                                         <?php foreach ($dimensi['pertanyaan'] as $pertanyaan): ?>
+                                             <div class="col-lg-12 mb-20">
+                                                 <label style="font-weight: bold; margin-bottom: 5px;">
+                                                     <?= esc($pertanyaan['id']) ?>. <?= esc($pertanyaan['pertanyaan']) ?>
+                                                 </label>
+                                                 <div class="tp-contact-single-input" style="display: flex; align-items: center;">
+                                                     <div style="margin-right: 20px; display: flex; align-items: center;">
+                                                         <input type="radio" id="pertanyaan_<?= esc($pertanyaan['id']) ?>_1" name="pertanyaan_<?= esc($pertanyaan['id']) ?>" value="1" style="margin-top: 5px;">
+                                                         <label for="pertanyaan_<?= esc($pertanyaan['id']) ?>_1" style="margin-left: 5px;">1</label>
+                                                     </div>
+                                                     <div style="margin-right: 20px; display: flex; align-items: center;">
+                                                         <input type="radio" id="pertanyaan_<?= esc($pertanyaan['id']) ?>_2" name="pertanyaan_<?= esc($pertanyaan['id']) ?>" value="2" style="margin-top: 5px;">
+                                                         <label for="pertanyaan_<?= esc($pertanyaan['id']) ?>_2" style="margin-left: 5px;">2</label>
+                                                     </div>
+                                                     <div style="margin-right: 20px; display: flex; align-items: center;">
+                                                         <input type="radio" id="pertanyaan_<?= esc($pertanyaan['id']) ?>_3" name="pertanyaan_<?= esc($pertanyaan['id']) ?>" value="3" style="margin-top: 5px;">
+                                                         <label for="pertanyaan_<?= esc($pertanyaan['id']) ?>_3" style="margin-left: 5px;">3</label>
+                                                     </div>
+                                                     <div style="margin-right: 20px; display: flex; align-items: center;">
+                                                         <input type="radio" id="pertanyaan_<?= esc($pertanyaan['id']) ?>_4" name="pertanyaan_<?= esc($pertanyaan['id']) ?>" value="4" style="margin-top: 5px;">
+                                                         <label for="pertanyaan_<?= esc($pertanyaan['id']) ?>_4" style="margin-left: 5px;">4</label>
+                                                     </div>
+                                                     <div style="display: flex; align-items: center;">
+                                                         <input type="radio" id="pertanyaan_<?= esc($pertanyaan['id']) ?>_9" name="pertanyaan_<?= esc($pertanyaan['id']) ?>" value="9" style="margin-top: 5px;">
+                                                         <label for="pertanyaan_<?= esc($pertanyaan['id']) ?>_9" style="margin-left: 5px;">9</label>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         <?php endforeach; ?>
+                                     <?php else: ?>
+                                         <div style="margin-left: 20px;">
+                                             <p>Tidak ada pertanyaan untuk sub dimensi ini.</p>
+                                         </div>
+                                     <?php endif; ?>
+                                     <br>
                                  <?php endforeach; ?>
                              <?php else: ?>
                                  <label style="font-weight: bold; margin-bottom: 5px;">Sub Dimensi: Tidak ada sub dimensi yang tersedia.</label>
                              <?php endif; ?>
-                             <br>
 
-                             <div class="col-lg-12 mb-20">
-                                 <label style="font-weight: bold; margin-bottom: 5px;">1. Menurut saya, layanan/program dapat diakses secara daring/online</label>
-                                 <div class="tp-contact-single-input" style="display: flex; align-items: center;">
-                                     <div style="margin-right: 20px; display: flex; align-items: center;">
-                                         <input type="radio" id="akses_daring_1" name="akses_daring" value="1" style="margin-top: 5px;">
-                                         <label for="akses_daring_1" style="margin-left: 5px;">1</label>
-                                     </div>
-                                     <div style="margin-right: 20px; display: flex; align-items: center;">
-                                         <input type="radio" id="akses_daring_2" name="akses_daring" value="2" style="margin-top: 5px;">
-                                         <label for="akses_daring_2" style="margin-left: 5px;">2</label>
-                                     </div>
-                                     <div style="margin-right: 20px; display: flex; align-items: center;">
-                                         <input type="radio" id="akses_daring_3" name="akses_daring" value="3" style="margin-top: 5px;">
-                                         <label for="akses_daring_3" style="margin-left: 5px;">3</label>
-                                     </div>
-                                     <div style="margin-right: 20px; display: flex; align-items: center;">
-                                         <input type="radio" id="akses_daring_4" name="akses_daring" value="4" style="margin-top: 5px;">
-                                         <label for="akses_daring_4" style="margin-left: 5px;">4</label>
-                                     </div>
-                                     <div style="display: flex; align-items: center;">
-                                         <input type="radio" id="akses_daring_9" name="akses_daring" value="9" style="margin-top: 5px;">
-                                         <label for="akses_daring_9" style="margin-left: 5px;">9</label>
-                                     </div>
-                                 </div>
-                             </div>
+                             <br>
                              <div class="col-lg-12 mb-20">
                                  <div class="tp-contact-btn-2">
                                      <button type="button" id="btn-kembali" class="tp-btn">Kembali</button>
