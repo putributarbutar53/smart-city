@@ -8,12 +8,11 @@ class AddOption9ToPertanyaan extends Migration
 {
     public function up()
     {
-        // Tambahkan kolom option_9 ke tabel pertanyaan
         $this->forge->addColumn('pertanyaan', [
             'option_9' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
-                'null'       => true,  // Optional: Allow NULL values if needed
+                'null'       => true,
             ],
         ]);
     }
