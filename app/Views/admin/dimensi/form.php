@@ -10,11 +10,7 @@
         <div class="row mb-3">
             <div class="col-lg col-xxl-5">
                 <div class="row">
-
-                    <div class="col">
-                        id_kategori:<br />
-                        <input type="text" name="id_kategori" value="<?= isset($detail['id_kategori']) ? $detail['id_kategori'] : ''; ?>" class="form form-control form-50" size="40" readonly />
-                    </div>
+                    <input type="hidden" name="id_kategori" value="<?= session()->get('id_kategori') ?>" class="form form-control form-50" size="40" readonly />
                     <div class="col">
                         Sub Dimensi:<br />
                         <input type="text" name="sub_dimensi" value="<?php if (isset($detail['sub_dimensi'])) echo $detail['sub_dimensi']; ?>" class="form form-control form-50" size="40" />
@@ -78,11 +74,11 @@
                 processData: false, // Prevent jQuery from processing the data
                 contentType: false, // Prevent jQuery from setting the content type
                 success: function(response) {
-                    $('#add_submit input[type="text"]').val('');
-                    $('#add_submit textarea').val('');
-                    $('#add').modal('hide');
-                    dataindex();
+                    $('#add_submit input[type="text"]').val(''); // Clear text inputs
+                    $('#add_submit textarea').val(''); // Clear textareas
+                    $('#add').modal('hide'); // Hide the modal
                     showToast("success", response.message);
+                    window.location.reload(); // Reload the page after submission
                 },
                 error: function(xhr, status, error) {
                     var response = xhr.responseJSON;
@@ -90,9 +86,10 @@
                 }
             });
         });
-    });
-    $('#add').on('hidden.bs.modal', function() {
-        dataindex();
-        $('#report_edit').html('');
+
+        $('#add').on('hidden.bs.modal', function() {
+            dataindex(); // Call dataindex() if necessary
+            $('#report_edit').html(''); // Clear any previous content
+        });
     });
 </script>
