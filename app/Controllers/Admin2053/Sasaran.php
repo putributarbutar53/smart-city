@@ -10,7 +10,7 @@ use App\Models\SasaranModel;
 
 class Sasaran extends BaseController
 {
-    var $model,$layanan,$validation,$sasaran;
+    var $model, $layanan, $validation, $sasaran;
     use ResponseTrait;
     function __construct()
     {
@@ -46,16 +46,18 @@ class Sasaran extends BaseController
 
         // Total Records with Filtering
         $totalRecordsWithFilter = $db->table('sasaran')
-            ->where('id !=', '0')
-            ->like('n_sasaran', $searchValue)
+            ->join('kategori', 'sasaran.id_kategori = kategori.id')
+            ->like('sasaran.n_sasaran', $searchValue)
+            ->orLike('kategori.nama',$searchValue)
             ->countAllResults();
 
         // Fetch Records
         $orderBy = ($columnName == '') ? 'id DESC' : $columnName . ' ' . $columnSortOrder;
         $data = $db->table('sasaran')
-            ->select('*')
-            ->where('id !=', '0')
-            ->like('n_sasaran', $searchValue)
+            ->select('sasaran.*, kategori.nama as kategori_nama')
+            ->join('kategori', 'sasaran.id_kategori = kategori.id')
+            ->like('sasaran.n_sasaran',$searchValue)
+            ->orLike('kategori.nama', $searchValue)
             ->orderBy($orderBy)
             ->limit($rowperpage, $row)
             ->get()
@@ -74,22 +76,24 @@ class Sasaran extends BaseController
 
     function add()
     {
-        $data['title'] = "Tambah Category";
+        $data['title'] = "Tambah Sasaran";
         $data['detail'] = [];
         $data['action'] = "add";
         $data['alert'] = "";
-        $data['tombol'] = "+ Tambah Category";
-        echo view('admin/category/form', $data);
+        $data['kategori'] = $this->model->findAll();
+        $data['tombol'] = "+ Tambah Sasaran";
+        echo view('admin/sasaran/form', $data);
     }
     function edit($id)
     {
-        $data['title'] = "Edit Data Category";
+        $data['title'] = "Edit Data Sasaran";
         $data['detail'] = $this->model->find($id);
         $data['action'] = "update";
+        $data['kategori'] = $this->model->findAll();
         $data['alert'] = "";
         $data['tombol'] = "Update Data";
 
-        echo view('admin/category/form', $data);
+        echo view('admin/sasaran/form', $data);
     }
     function detail($id)
     {
@@ -105,10 +109,10 @@ class Sasaran extends BaseController
     {
         $action = $this->request->getVar('action');
         $rules = [
-            'name' => [
+            'n_sasaran' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Nama harus diisi'
+                    'required' => 'Sasaran harus diisi'
                 ]
             ],
         ];
@@ -123,10 +127,10 @@ class Sasaran extends BaseController
         switch ($action) {
             case "add":
                 $rulesAdd = [
-                    'name' => [
+                    'n_sasaran' => [
                         'rules' => 'required',
                         'errors' => [
-                            'required' => 'Nama harus diisi'
+                            'required' => 'Sasaran harus diisi'
                         ]
                     ],
                 ];
@@ -139,11 +143,12 @@ class Sasaran extends BaseController
 
                 // Get the data from the request, such as POST data
                 $requestData = array(
-                    'name' => $this->request->getVar('name'),
+                    'id_kategori' => $this->request->getVar('id_kategori'),
+                    'n_sasaran' => $this->request->getVar('n_sasaran'),
                 );
 
                 // Insert the data into the database using the model
-                $this->model->insert($requestData);
+                $this->sasaran->insert($requestData);
 
                 // Return a JSON response
                 return $this->respond([
@@ -154,16 +159,17 @@ class Sasaran extends BaseController
             case "update":
                 // Get the data from the request, such as POST data
                 $requestData = [
-                    'name' => $this->request->getVar('name'),
+                    'id_kategori' => $this->request->getVar('id_kategori'),
+                    'n_sasaran' => $this->request->getVar('n_sasaran'),
                 ];
 
-                $detail = $this->model->find($this->request->getVar('id'));
+                $detail = $this->sasaran->find($this->request->getVar('id'));
 
                 $rules = [
-                    'name' => [
+                    'n_sasaran' => [
                         'rules' => 'required',
                         'errors' => [
-                            'required' => 'Nama harus diisi'
+                            'required' => 'Sasaran harus diisi'
                         ]
                     ],
                 ];
@@ -179,7 +185,7 @@ class Sasaran extends BaseController
                 }
 
                 // Update the data in the database using the model
-                $this->model->update($detail['id'], $requestData);
+                $this->sasaran->update($detail['id'], $requestData);
 
                 // Return a JSON response
                 return $this->respond([

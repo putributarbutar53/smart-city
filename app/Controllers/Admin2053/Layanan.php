@@ -9,7 +9,7 @@ use App\Models\LayananModel;
 
 class Layanan extends BaseController
 {
-    var $model,$layanan,$validation;
+    var $model, $layanan, $validation;
     use ResponseTrait;
     function __construct()
     {
@@ -22,11 +22,10 @@ class Layanan extends BaseController
         $data = [
             'kategori' => $this->model->findAll()
         ];
-        echo view('admin/layanan/index',$data);
+        echo view('admin/layanan/index', $data);
     }
     function loaddata()
     {
-
         $request = service('request');
 
         $draw = $request->getVar('draw');
@@ -37,7 +36,6 @@ class Layanan extends BaseController
         $columnName = $request->getVar('columns')[$columnIndex]['data'];
 
         $columnSortOrder = $request->getVar('order')[0]['dir'];
-        // $columnSortOrder = ($request->getVar('order')[0]['dir'] == 'asc') ? 'desc' : 'asc';
         $searchValue = $request->getVar('search')['value'];
 
         $db = db_connect();
@@ -47,21 +45,22 @@ class Layanan extends BaseController
 
         // Total Records with Filtering
         $totalRecordsWithFilter = $db->table('layanan')
-            ->where('id !=', '0')
-            ->like('n_layanan', $searchValue)
+            ->join('kategori', 'layanan.id_kategori = kategori.id')
+            ->like('layanan.n_layanan', $searchValue)
+            ->orLike('kategori.nama', $searchValue)
             ->countAllResults();
 
         // Fetch Records
-        $orderBy = ($columnName == '') ? 'id DESC' : $columnName . ' ' . $columnSortOrder;
+        $orderBy = ($columnName == '') ? 'layanan.id DESC' : $columnName . ' ' . $columnSortOrder;
         $data = $db->table('layanan')
-            ->select('*')
-            ->where('id !=', '0')
-            ->like('n_layanan', $searchValue)
+            ->select('layanan.*, kategori.nama as kategori_nama')
+            ->join('kategori', 'layanan.id_kategori = kategori.id')
+            ->like('layanan.n_layanan', $searchValue)
+            ->orLike('kategori.nama', $searchValue)
             ->orderBy($orderBy)
             ->limit($rowperpage, $row)
             ->get()
             ->getResult();
-
 
         $response = [
             'draw' => intval($draw),
@@ -72,6 +71,7 @@ class Layanan extends BaseController
 
         return $this->response->setJSON($response);
     }
+
 
     function add()
     {
@@ -88,6 +88,7 @@ class Layanan extends BaseController
         $data['title'] = "Edit Data Category";
         $data['detail'] = $this->model->find($id);
         $data['action'] = "update";
+        $data['kategori'] = $this->model->findAll();
         $data['alert'] = "";
         $data['tombol'] = "Update Data";
 
@@ -141,11 +142,12 @@ class Layanan extends BaseController
 
                 // Get the data from the request, such as POST data
                 $requestData = array(
+                    'id_kategori' => $this->request->getVar('id_kategori'),
                     'n_layanan' => $this->request->getVar('n_layanan'),
                 );
 
                 // Insert the data into the database using the model
-                $this->model->insert($requestData);
+                $this->layanan->insert($requestData);
 
                 // Return a JSON response
                 return $this->respond([
@@ -156,10 +158,11 @@ class Layanan extends BaseController
             case "update":
                 // Get the data from the request, such as POST data
                 $requestData = [
+                    'id_kategori' => $this->request->getVar('id_kategori'),
                     'n_layanan' => $this->request->getVar('n_layanan'),
                 ];
 
-                $detail = $this->model->find($this->request->getVar('id'));
+                $detail = $this->layanan->find($this->request->getVar('id'));
 
                 $rules = [
                     'n_layanan' => [
@@ -181,7 +184,7 @@ class Layanan extends BaseController
                 }
 
                 // Update the data in the database using the model
-                $this->model->update($detail['id'], $requestData);
+                $this->layanan->update($detail['id'], $requestData);
 
                 // Return a JSON response
                 return $this->respond([

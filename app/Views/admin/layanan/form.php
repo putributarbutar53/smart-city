@@ -14,6 +14,7 @@
                     <div class="col">
                         Category:<br />
                         <select name="id_kategori" class="form form-control form-50">
+                            <option value="">Pilih Kategori</option> <!-- Opsi default -->
                             <?php foreach ($kategori as $kat) : ?>
                                 <option value="<?= $kat['id']; ?>" <?= (isset($detail['id_kategori']) && $detail['id_kategori'] == $kat['id']) ? 'selected' : ''; ?>>
                                     <?= $kat['nama']; ?>
@@ -21,6 +22,7 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
+
 
                     <div class="col">
                         Nama Layanan:<br />

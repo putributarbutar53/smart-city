@@ -25,7 +25,7 @@
                 <ul class="navbar-nav flex-column">
                     <li class="nav-item<?php if (current_url() === site_url('admin2053/layanan')) { ?> active<?php } ?>">
                         <a class="nav-link" href="<?php echo site_url('admin2053/layanan') ?>">
-                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-service"></span></span><span class="nav-link-text">Layanan</span>
+                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-street-view"></span></span><span class="nav-link-text">Layanan</span>
                             </div>
                         </a>
                     </li>
@@ -36,7 +36,7 @@
                 <ul class="navbar-nav flex-column">
                     <li class="nav-item<?php if (current_url() === site_url('admin2053/sasaran')) { ?> active<?php } ?>">
                         <a class="nav-link" href="<?php echo site_url('admin2053/sasaran') ?>">
-                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-target"></span></span><span class="nav-link-text">Layanan</span>
+                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-thumbs-up"></span></span><span class="nav-link-text">Sasaran</span>
                             </div>
                         </a>
                     </li>

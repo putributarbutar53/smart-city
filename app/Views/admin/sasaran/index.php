@@ -65,10 +65,12 @@
                 }
             },
             'columns': [{
-                    data: 'id_kategori',
+                    data: 'kategori_nama', // Mengambil nama kategori
+                    title: 'Category',
                 },
                 {
                     data: 'n_sasaran',
+                    title: 'Layanan',
                 },
                 {
                     data: 'navButton',

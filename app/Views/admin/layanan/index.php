@@ -65,10 +65,12 @@
                 }
             },
             'columns': [{
-                    data: 'id_kategori',
+                    data: 'kategori_nama', // Mengambil nama kategori
+                    title: 'Category',
                 },
                 {
                     data: 'n_layanan',
+                    title: 'Layanan',
                 },
                 {
                     data: 'navButton',
@@ -78,10 +80,6 @@
                 }
             ],
 
-            // 'dom':'Bfrtip',
-            // 'buttons':[
-            //   'copy','csv','excel','pdf','print'
-            // ],	
             'order': [
                 [0, 'asc']
             ],
@@ -98,6 +96,7 @@
             dataindex();
         }, 100);
     });
+
 
     function deletedata(iddata) {
         $('#alert_modal').modal('show');
