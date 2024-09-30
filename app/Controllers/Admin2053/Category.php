@@ -4,28 +4,42 @@ namespace App\Controllers\Admin2053;
 
 use App\Controllers\BaseController;
 use App\Models\KategoriModel;
+use App\Models\SubDimensiModel;
 use CodeIgniter\API\ResponseTrait;
 
 class Category extends BaseController
 {
-    var $model, $validation;
+    var $model, $subdimensi, $validation;
     use ResponseTrait;
     function __construct()
     {
         $this->model = new KategoriModel();
+        $this->subdimensi = new SubDimensiModel();
         $this->validation = \Config\Services::validation();
     }
     function index()
     {
         echo view('admin/category/index');
     }
-    function bagian($id_kategori)
+    // function bagian($id_kategori)
+    // {
+    //     $detail = $this->model->find($id_kategori);
+    //     $data['detail'] = $detail;
+
+    //     echo view('admin/dimensi/index', $data);
+    // }
+    public function bagian($id_kategori)
     {
         $detail = $this->model->find($id_kategori);
         $data['detail'] = $detail;
 
+        // Mengambil data dari model SubDimensiModel berdasarkan id_kategori
+        $data['sub_dimensi'] = $this->subdimensi->where('id_kategori', $id_kategori)->findAll();
+
         echo view('admin/dimensi/index', $data);
     }
+
+
     function loaddata()
     {
 
