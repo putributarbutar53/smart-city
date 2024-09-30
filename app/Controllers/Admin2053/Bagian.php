@@ -71,8 +71,6 @@ class Bagian extends BaseController
 
         return $this->response->setJSON($response);
     }
-
-
     public function add($id_kategori = null)
     {
         $data['title'] = "Tambah Category";
@@ -110,7 +108,7 @@ class Bagian extends BaseController
             'sub_dimensi' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Sub Dimensi harus diisi'
+                    'required' => 'Nama harus diisi'
                 ]
             ],
         ];
@@ -141,6 +139,7 @@ class Bagian extends BaseController
 
                 // Get the data from the request, such as POST data
                 $requestData = array(
+                    'id_kategori' => $this->request->getVar('id_kategori'),
                     'sub_dimensi' => $this->request->getVar('sub_dimensi'),
                 );
 
@@ -156,6 +155,7 @@ class Bagian extends BaseController
             case "update":
                 // Get the data from the request, such as POST data
                 $requestData = [
+                    'id_kategori' => $this->request->getVar('id_kategori'),
                     'sub_dimensi' => $this->request->getVar('sub_dimensi'),
                 ];
 

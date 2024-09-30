@@ -32,6 +32,7 @@ class Category extends BaseController
     {
         $detail = $this->model->find($id_kategori);
         $data['detail'] = $detail;
+        session()->set('id_kategori', $id_kategori);
 
         // Mengambil data dari model SubDimensiModel berdasarkan id_kategori
         $data['sub_dimensi'] = $this->subdimensi->where('id_kategori', $id_kategori)->findAll();

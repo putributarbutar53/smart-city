@@ -6,14 +6,12 @@ use CodeIgniter\Model;
 
 class SubDimensiModel extends Model
 {
-    protected $table = 'sub_dimensi';
-    protected $primaryKey = 'id';
-    protected $allowedFields = ['id_kategori', 'sub_dimensi'];
+    protected $table = 'sub_dimensi'; // Nama tabel
+    protected $primaryKey = 'id'; // Primary key tabel
+    protected $allowedFields = ['id_kategori', 'sub_dimensi']; // Kolom yang diizinkan untuk diisi
 
-    // Optional: if you want to enable automatic handling of timestamps
-    protected $useTimestamps = true;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    // Nonaktifkan pengaturan timestamps
+    protected $useTimestamps = false; // Set false agar tidak menggunakan timestamps
 
     /**
      * Method to get all sub-dimensi by kategori
@@ -23,6 +21,6 @@ class SubDimensiModel extends Model
      */
     public function getSubDimensiByKategori($id_kategori)
     {
-        return $this->where('id_kategori', $id_kategori)->findAll();
+        return $this->where('id_kategori', $id_kategori)->findAll(); // Mengambil sub dimensi berdasarkan kategori
     }
 }

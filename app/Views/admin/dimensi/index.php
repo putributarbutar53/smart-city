@@ -64,8 +64,18 @@
 <?php $this->section('script') ?>
 
 <script>
+    $(document).ready(function() {
+        // Mengatur DataTable dan melakukan penyesuaian kolom
+        const dataTable = $('#table_index').DataTable().columns.adjust();
+
+        // Timeout yang tidak melakukan apa-apa bisa dihapus atau disesuaikan
+        setTimeout(function() {}, 100);
+    });
+
+    // Fungsi untuk menghapus data
     function deletedata(iddata) {
         $('#alert_modal').modal('show');
+
         $("#click_yes").off("click").on("click", function() {
             $.ajax({
                 type: 'DELETE',
@@ -76,7 +86,8 @@
                 success: function(response) {
                     $('#alert_modal').modal('hide');
                     showToast('success', response.message);
-                    dataindex();
+                    // Refresh DataTable
+                    window.location.reload();
                 },
                 error: function(xhr, status, error) {
                     showToastError(error, xhr.responseJSON);
@@ -85,26 +96,24 @@
         });
     }
 
+    // Fungsi untuk mengedit data
     function editdata(iddata) {
-        $.get("<?= site_url('admin2053/bagian/edit') ?>/" + iddata, function(data, status) {
+        $.get("<?= site_url('admin2053/bagian/edit') ?>/" + iddata, function(data) {
             $("#editor_add").html(data);
             $('#add').modal('toggle');
         });
     }
 
+    // Fungsi untuk menambahkan data
     function adddata(id_kategori) {
         $('#editor_add').load('<?= site_url('admin2053/bagian/add/') ?>' + id_kategori, function() {
-            $('#add').modal({
-                show: true
-            });
+            $('#add').modal('show');
         });
     }
 
-    function detaildata(iddata) {
-        $.get("<?= site_url('admin2053/bagian/detail') ?>/" + iddata, function(data, status) {
-            $("#detail_data").html(data);
-            $('#detail').modal('toggle');
-        });
+    // Setelah data berhasil ditambahkan atau diedit, refresh DataTable
+    function afterDataChange() {
+        dataTable.ajax.reload(); // Refresh DataTable
     }
 </script>
 <?php $this->endsection() ?>
