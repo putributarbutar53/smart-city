@@ -48,9 +48,14 @@
                     <div class="col-sm"><a href="<?= site_url('admin2053/layanan') ?>"><img src="<?= base_url() ?>assets/icon/provider.png" style="width: 70px; height: 70px;" /></a><br />Layanan</div>
                 <?php } ?>
                 <div class="col-sm"><a href="<?= site_url('admin2053/sasaran') ?>"><img src="<?= base_url() ?>assets/icon/target.png" style="width: 70px; height: 70px;" /></a><br />Sasaran</div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm"><a href="<?= site_url('admin2053/question') ?>"><img src="<?= base_url() ?>assets/icon/help.png" style="width: 70px; height: 70px;" /></a><br />Pertanyaan</div>
                 <div class="col-sm"><a href="<?= site_url('admin2053/hasil') ?>"><img src="<?= base_url() ?>assets/icon/evaluation.png" style="width: 70px; height: 70px;" /></a><br />Hasil</div>
                 <div class="col-sm"><a href="<?= site_url('admin2053/Login/logout') ?>"><img src="<?= base_url() ?>assets/icon/power.png" style="width: 70px; height: 70px;" /></a><br />Logout</div>
             </div>
+
         </div>
     </div>
 </div>

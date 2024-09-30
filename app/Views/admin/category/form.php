@@ -82,7 +82,7 @@
 
              $.ajax({
                  type: 'POST',
-                 url: "<?= site_url('admin2011/category/submitdata') ?>",
+                 url: "<?= site_url('admin2053/category/submitdata') ?>",
                  headers: {
                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                  },
