@@ -23,9 +23,25 @@
                     <hr class="navbar-vertical-hr my-2" />
                 </div>
                 <ul class="navbar-nav flex-column">
+                    <li class="nav-item<?php if (current_url() === site_url('admin2053/category')) { ?> active<?php } ?>">
+                        <a class="nav-link" href="<?php echo site_url('admin2053/category') ?>">
+                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-th-list"></span></span><span class="nav-link-text">Kategori</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav flex-column">
                     <li class="nav-item<?php if (current_url() === site_url('admin2053/layanan')) { ?> active<?php } ?>">
                         <a class="nav-link" href="<?php echo site_url('admin2053/layanan') ?>">
                             <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-street-view"></span></span><span class="nav-link-text">Layanan</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-item<?php if (current_url() === site_url('admin2053/sasaran')) { ?> active<?php } ?>">
+                        <a class="nav-link" href="<?php echo site_url('admin2053/sasaran') ?>">
+                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-thumbs-up"></span></span><span class="nav-link-text">Sasaran</span>
                             </div>
                         </a>
                     </li>
@@ -34,9 +50,17 @@
                     <hr class="navbar-vertical-hr my-2" />
                 </div>
                 <ul class="navbar-nav flex-column">
-                    <li class="nav-item<?php if (current_url() === site_url('admin2053/sasaran')) { ?> active<?php } ?>">
-                        <a class="nav-link" href="<?php echo site_url('admin2053/sasaran') ?>">
-                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-thumbs-up"></span></span><span class="nav-link-text">Sasaran</span>
+                    <li class="nav-item<?php if (current_url() === site_url('admin2053/question')) { ?> active<?php } ?>">
+                        <a class="nav-link" href="<?php echo site_url('admin2053/question') ?>">
+                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-question-circle"></span></span><span class="nav-link-text">Pertanyaan</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-item<?php if (current_url() === site_url('admin2053/hasil')) { ?> active<?php } ?>">
+                        <a class="nav-link" href="<?php echo site_url('admin2053/hasil') ?>">
+                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-chart-line"></span></span><span class="nav-link-text">Hasil</span>
                             </div>
                         </a>
                     </li>
