@@ -28,7 +28,7 @@ class PertanyaanModel extends Model
      * @param int $id_subdimensi
      * @return array
      */
-    public function getPertanyaanBySubDimensi($id_subdimensi)
+    public function getPertanyaanBySubDimensiId($id_subdimensi)
     {
         return $this->where('id_subdimensi', $id_subdimensi)->findAll();
     }

@@ -15,6 +15,7 @@
 
     <!-- CSS here -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMp5aUq1fZP8t94zOB/2bL8WaiD5u15GVy3cZc" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>asset/css/bootstrap.css">
     <link rel="stylesheet" href="<?= base_url() ?>asset/css/animate.css">
     <link rel="stylesheet" href="<?= base_url() ?>asset/css/swiper-bundle.css">
@@ -73,7 +74,7 @@
     </div>
 
     <!-- tp-offcanvus-area-start -->
-    <div class="tpoffcanvas-area">
+    <!-- <div class="tpoffcanvas-area">
         <div class="tpoffcanvas">
             <div class="tpoffcanvas__close-btn">
                 <button class="close-btn"><i class="fal fa-times"></i></button>
@@ -115,7 +116,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="body-overlay"></div>
     <!-- tp-offcanvus-area-end -->
     <!--search-form-start -->
@@ -153,6 +154,7 @@
     <!-- footer-area-end -->
     <!-- JS here -->
     <script src="<?= base_url() ?>asset/js/vendors/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<?= base_url() ?>asset/js/vendors/waypoints.js"></script>
     <script src="<?= base_url() ?>asset/js/bootstrap-bundle.js"></script>
     <script src="<?= base_url() ?>asset/js/meanmenu.js"></script>

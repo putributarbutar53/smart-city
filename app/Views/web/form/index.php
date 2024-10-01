@@ -1,207 +1,211 @@
  <?php $this->extend('web/layout/main') ?>
 
  <?php $this->section('content') ?>
-
-
- <div class="tp-contact-form-area pb-120">
-
+ <div class="tp-hero-area p-relative">
+     <img class="tp-hero-bus-shape d-none d-xxl-block up-down p-absolute" src="<?= base_url() ?>asset/img/banner/bus/shaep1.png" alt="shape">
+     <img class="tp-hero-bus-shape-2 up-down p-absolute" src="<?= base_url() ?>asset/img/banner/bus/shape3.png" alt="shape">
+     <img class="tp-hero-bus-shape-6 up-down d-none d-lg-block p-absolute" src="<?= base_url() ?>asset/img/banner/bus/shape6.png" alt="shape">
+     <img class="tp-hero-bus-shape-7 tree-move p-absolute" src="<?= base_url() ?>asset/img/banner/bus/shape7.png" alt="shape">
      <div class="container">
          <div class="row">
-             <div class="col-lg-12">
-                 <div class="tp-contact-form-2">
-                     <h6 class="tp-contact-form-title-2 mb-40 wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s" style="margin-top: -50px;">Kuesioner Evaluasi Implementasi Smart City</h6>
+             <div class="row">
+                 <p style="margin-top: 10px;"> <!-- Ganti 20px dengan nilai yang diinginkan -->
+                     <a href="<?= base_url() ?>" class="btn" style="margin-left: -10px;"> <!-- Ganti -10px dengan nilai yang diinginkan -->
+                         <i class="fas fa-arrow-left"></i> Kembali
+                     </a>
+                 </p>
 
-                     <p style="margin-top: -20px;"><?= esc($kategori['nama']) ?></p>
-                     <form id="form-kuisioner" action="https://html.hixstudio.net/alizo-prev/alizo/assets/mail.php" method="POST" class="wow fadeInUp" data-wow-delay=".4s" data-wow-duration="1s">
-                         <div class="row" id="data-diri">
-                             <div class="col-lg-12 mb-20">
-                                 <label style="font-weight: bold; margin-bottom: 5px;">Nama : </label>
-                                 <div class="tp-contact-single-input">
-                                     <input type="text" name="nama" placeholder="Masukkan Nama Anda" style="height: 40px;">
-                                 </div>
-                             </div>
-                             <div class="col-lg-12 mb-20">
-                                 <label style="font-weight: bold; margin-bottom: 5px;">Email : </label>
-                                 <div class="tp-contact-single-input">
-                                     <input type="text" name="email" placeholder="Masukkan Email Anda" style="height: 40px;">
-                                 </div>
-                             </div>
+                 <div class="col-lg-12">
+                     <div class="tp-contact-form-2">
 
-                             <!-- Jenis Kelamin -->
-                             <div class="col-lg-12 mb-20">
-                                 <div class="tp-contact-single-input" style="display: flex; align-items: center;">
-                                     <label for="jenis_kelamin" style="font-weight: bold; margin-right: 10px;">Jenis Kelamin:</label>
-                                     <div style="margin-right: 20px; display: flex; align-items: center;">
-                                         <input type="radio" id="laki-laki" name="jenis_kelamin" value="Laki-laki" style="margin-top: 5px;">
-                                         <label for="laki-laki" style="margin-left: 5px; margin-top: 5px;">Laki-laki</label>
-                                     </div>
-                                     <div style="display: flex; align-items: center;">
-                                         <input type="radio" id="perempuan" name="jenis_kelamin" value="Perempuan" style="margin-top: 5px;">
-                                         <label for="perempuan" style="margin-left: 5px; margin-top: 5px;">Perempuan</label>
+                         <h6 class="tp-contact-form-title-2 mb-40 wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s" style="margin-top: -20px;">Kuesioner Evaluasi Implementasi Smart City</h6>
+
+                         <p style="margin-top: -20px;"><?= esc($kategori['nama']) ?></p>
+                         <form id="form-kuisioner" method="POST" class="wow fadeInUp" data-wow-delay=".4s" data-wow-duration="1s">
+                             <div class="row" id="data-diri">
+                                 <div class="col-lg-12 mb-20">
+                                     <label style="font-weight: bold; margin-bottom: 5px;">Nama : </label>
+                                     <div class="tp-contact-single-input">
+                                         <input type="text" name="nama" placeholder="Masukkan Nama Anda" style="height: 40px;">
                                      </div>
                                  </div>
-                             </div>
-
-                             <!-- Umur -->
-                             <div class="col-lg-12 mb-20">
-                                 <label style="font-weight: bold; margin-bottom: 5px;">Umur : </label>
-                                 <div class="tp-contact-single-input">
-                                     <input type="number" name="umur" placeholder="Masukkan Umur Anda" style="height: 40px;">
-                                 </div>
-                             </div>
-
-                             <!-- Pekerjaan -->
-                             <div class="col-lg-12 mb-20">
-                                 <label style="font-weight: bold; margin-bottom: 5px;">Pekerjaan : </label>
-                                 <div class="tp-contact-single-input">
-                                     <input type="text" name="pekerjaan" placeholder="Masukkan Pekerjaan Anda" style="height: 40px;">
-                                 </div>
-                             </div>
-
-                             <!-- Pilih Layanan/Program -->
-                             <div class="col-lg-12 mb-20">
-                                 <div class="tp-contact-single-input">
-                                     <label style="font-weight: bold; margin-bottom: 5px;">Pilih Layanan/Program:</label>
-                                     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                                         <?php if (!empty($layanan)): ?>
-                                             <?php foreach ($layanan as $item): ?>
-                                                 <label style="display: flex; align-items: center;">
-                                                     <input type="checkbox" name="nama_layanan[]" value="<?= $item['n_layanan']; ?>" style="margin-right: 5px;"> <?= $item['n_layanan']; ?>
-                                                 </label>
-                                             <?php endforeach; ?>
-                                         <?php else: ?>
-                                             <p>Tidak ada layanan yang tersedia untuk kategori ini.</p>
-                                         <?php endif; ?>
-                                         <label style="display: flex; align-items: center;">
-                                             <input type="checkbox" name="nama_layanan[]" value="Lainnya" style="margin-right: 5px;" id="lainnya-checkbox"> Lainnya
-                                         </label>
-                                         <input type="text" name="nama_layanan_lain" id="nama_layanan_lain" placeholder="Sebutkan Layanan Lainnya" style="height: 40px; display: none; width: 100%;">
+                                 <div class="col-lg-12 mb-20">
+                                     <label style="font-weight: bold; margin-bottom: 5px;">Email : </label>
+                                     <div class="tp-contact-single-input">
+                                         <input type="text" name="email" placeholder="Masukkan Email Anda" style="height: 40px;">
                                      </div>
                                  </div>
-                             </div>
 
-                             <!-- Sasaran Layanan/Program -->
-                             <div class="col-lg-12 mb-20">
-                                 <div class="tp-contact-single-input">
-                                     <label style="font-weight: bold; margin-bottom: 5px;">Pilih Sasaran Layanan/Program:</label>
-                                     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                                         <?php if (!empty($sasaran)): ?>
-                                             <?php foreach ($sasaran as $item): ?>
-                                                 <label style="display: flex; align-items: center;">
-                                                     <input type="checkbox" name="sasaran_layanan[]" value="<?= $item['n_sasaran']; ?>" style="margin-right: 5px;"> <?= $item['n_sasaran']; ?>
-                                                 </label>
-                                             <?php endforeach; ?>
-                                         <?php else: ?>
-                                             <p>Tidak ada sasaran yang tersedia untuk kategori ini.</p>
-                                         <?php endif; ?>
-                                         <label style="display: flex; align-items: center;">
-                                             <input type="checkbox" name="sasaran_layanan[]" value="Lainnya" style="margin-right: 5px;" id="sasaran-lainnya-checkbox"> Lainnya
-                                         </label>
-                                         <input type="text" name="sasaran_lain" id="sasaran_lain" placeholder="Sebutkan Sasaran Lainnya" style="height: 40px; display: none; width: 100%;">
+                                 <!-- Jenis Kelamin -->
+                                 <div class="col-lg-12 mb-20">
+                                     <div class="tp-contact-single-input" style="display: flex; align-items: center;">
+                                         <label for="jenis_kelamin" style="font-weight: bold; margin-right: 10px;">Jenis Kelamin:</label>
+                                         <div style="margin-right: 20px; display: flex; align-items: center;">
+                                             <input type="radio" id="laki-laki" name="jenis_kelamin" value="L" style="margin-top: 5px;">
+                                             <label for="laki-laki" style="margin-left: 5px; margin-top: 5px;">Laki-laki</label>
+                                         </div>
+                                         <div style="display: flex; align-items: center;">
+                                             <input type="radio" id="perempuan" name="jenis_kelamin" value="P" style="margin-top: 5px;">
+                                             <label for="perempuan" style="margin-left: 5px; margin-top: 5px;">Perempuan</label>
+                                         </div>
                                      </div>
                                  </div>
-                             </div>
-                             <!-- Selfie -->
-                             <div class="col-lg-12 mb-20">
-                                 <label style="font-weight: bold; margin-bottom: 5px;">Ambil Selfie: </label>
-                                 <video id="video" width="100%" height="350px" style="border: 1px solid black;"></video>
-                                 <button type="button" id="take-selfie" class="tp-btn" style="margin-top: 10px;">Ambil Selfie</button>
-                                 <canvas id="selfie-canvas" style="display:none;"></canvas>
-                                 <input type="hidden" name="selfie_data" id="selfie_data">
-                                 <div id="selfie-preview" style="margin-top: 10px; text-align: center;">
-                                     <label style="font-weight: bold;">Preview Selfie:</label>
-                                     <img id="selfie-image" style="display: none; max-width: 100%; height: auto; border: 1px solid black; margin-top: 5px; display: block; margin-left: auto; margin-right: auto;">
+
+                                 <input type="hidden" name="id_kategori" value="<?= esc($kategori['id']) ?>">
+
+                                 <!-- Umur -->
+                                 <div class="col-lg-12 mb-20">
+                                     <label style="font-weight: bold; margin-bottom: 5px;">Umur : </label>
+                                     <div class="tp-contact-single-input">
+                                         <input type="number" name="umur" placeholder="Masukkan Umur Anda" style="height: 40px;">
+                                     </div>
                                  </div>
-                             </div>
 
-                             <!-- Tanda Tangan -->
-                             <div class="col-lg-12 mb-20">
-                                 <label style="font-weight: bold; margin-bottom: 5px;">Tanda Tangan: </label>
-                                 <br>
-                                 <div style="display: flex; align-items: center;">
-                                     <canvas id="signature-canvas" width="300" height="110" style="border: 1px solid #000;"></canvas>
-                                     <span id="clear-signature" style="cursor: pointer; margin-left: 10px;">
-                                         <i class="fas fa-trash" style="font-size: 18px; color: #cc0a0a;"></i>
-                                     </span>
+                                 <!-- Pekerjaan -->
+                                 <div class="col-lg-12 mb-20">
+                                     <label style="font-weight: bold; margin-bottom: 5px;">Pekerjaan : </label>
+                                     <div class="tp-contact-single-input">
+                                         <input type="text" name="pekerjaan" placeholder="Masukkan Pekerjaan Anda" style="height: 40px;">
+                                     </div>
                                  </div>
-                                 <input type="hidden" name="signature_data" id="signature_data">
-                             </div>
 
-                             <!-- Button -->
-                             <div class="col-lg-12 mb-20">
-                                 <div class="tp-contact-btn-2">
-                                     <button type="button" id="btn-selanjutnya" class="tp-btn">Selanjutnya</button>
-                                     <p class="ajax-response"></p>
+                                 <!-- Pilih Layanan/Program -->
+                                 <div class="col-lg-12 mb-20">
+                                     <div class="tp-contact-single-input">
+                                         <label style="font-weight: bold; margin-bottom: 5px;">Pilih Layanan/Program:</label>
+                                         <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                             <?php if (!empty($layanan)): ?>
+                                                 <?php foreach ($layanan as $item): ?>
+                                                     <label style="display: flex; align-items: center;">
+                                                         <input type="checkbox" name="nama_layanan[]" value="<?= $item['n_layanan']; ?>" style="margin-right: 5px;"> <?= $item['n_layanan']; ?>
+                                                     </label>
+                                                 <?php endforeach; ?>
+                                             <?php else: ?>
+                                                 <p>Tidak ada layanan yang tersedia untuk kategori ini.</p>
+                                             <?php endif; ?>
+                                             <label style="display: flex; align-items: center;">
+                                                 <input type="checkbox" name="nama_layanan[]" value="Lainnya" style="margin-right: 5px;" id="lainnya-checkbox"> Lainnya
+                                             </label>
+                                             <input type="text" name="nama_layanan_lain" id="nama_layanan_lain" placeholder="Sebutkan Layanan Lainnya" style="height: 40px; display: none; width: 100%;">
+                                         </div>
+                                     </div>
                                  </div>
-                             </div>
-                         </div>
 
-                         <div id="kuisioner" class="hidden">
-                             <p>Kuesioner ini mengukur persepsi Anda sebagai masyarakat terhadap implementasi program smart city yang dilaksanakan oleh Pemerintah Daerah. Silakan klik angka dengan skala nilai yang sesuai. (1 = “Tidak Setuju”; 2 = “Kurang Setuju”; 3 = “Setuju”; dan 4 = “Sangat Setuju”; atau 9 bila tidak menjawab)</p>
-                             <?php
-                                // Array untuk mengonversi angka ke angka Romawi
-                                $roman_numbers = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']; // Tambah lebih banyak jika diperlukan
-                                ?>
+                                 <!-- Sasaran Layanan/Program -->
+                                 <div class="col-lg-12 mb-20">
+                                     <div class="tp-contact-single-input">
+                                         <label style="font-weight: bold; margin-bottom: 5px;">Pilih Sasaran Layanan/Program:</label>
+                                         <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                             <?php if (!empty($sasaran)): ?>
+                                                 <?php foreach ($sasaran as $item): ?>
+                                                     <label style="display: flex; align-items: center;">
+                                                         <input type="checkbox" name="sasaran_layanan[]" value="<?= $item['n_sasaran']; ?>" style="margin-right: 5px;"> <?= $item['n_sasaran']; ?>
+                                                     </label>
+                                                 <?php endforeach; ?>
+                                             <?php else: ?>
+                                                 <p>Tidak ada sasaran yang tersedia untuk kategori ini.</p>
+                                             <?php endif; ?>
+                                             <label style="display: flex; align-items: center;">
+                                                 <input type="checkbox" name="sasaran_layanan[]" value="Lainnya" style="margin-right: 5px;" id="sasaran-lainnya-checkbox"> Lainnya
+                                             </label>
+                                             <input type="text" name="sasaran_lain" id="sasaran_lain" placeholder="Sebutkan Sasaran Lainnya" style="height: 40px; display: none; width: 100%;">
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <!-- Selfie -->
+                                 <div class="col-lg-12 mb-20">
+                                     <label style="font-weight: bold; margin-bottom: 5px;">Ambil Selfie: </label>
+                                     <video id="video" width="100%" height="350px" style="border: 1px solid black;"></video>
+                                     <button type="button" id="take-selfie" class="tp-btn" style="margin-top: 10px;">Ambil Selfie</button>
+                                     <canvas id="selfie-canvas" style="display:none;"></canvas>
+                                     <input type="hidden" name="selfie_data" id="selfie_data">
+                                     <div id="selfie-preview" style="margin-top: 10px; text-align: center;">
+                                         <label style="font-weight: bold;">Preview Selfie:</label>
+                                         <img id="selfie-image" style="display: none; max-width: 100%; height: auto; border: 1px solid black; margin-top: 5px; display: block; margin-left: auto; margin-right: auto;">
+                                     </div>
+                                 </div>
 
-                             <?php if (!empty($sub_dimensi)): ?>
-                                 <?php foreach ($sub_dimensi as $index => $dimensi): ?>
-                                     <label style="font-weight: bold; margin-bottom: 5px;">
-                                         Sub Dimensi <?= isset($roman_numbers[$index]) ? $roman_numbers[$index] : ($index + 1) ?>: <?= esc($dimensi['sub_dimensi']) ?>
-                                     </label>
+                                 <!-- Tanda Tangan -->
+                                 <div class="col-lg-12 mb-20">
+                                     <label style="font-weight: bold; margin-bottom: 5px;">Tanda Tangan: </label>
                                      <br>
+                                     <div style="display: flex; align-items: center;">
+                                         <canvas id="signature-canvas" width="300" height="110" style="border: 1px solid #000;"></canvas>
+                                         <span id="clear-signature" style="cursor: pointer; margin-left: 10px;">
+                                             <i class="fas fa-trash" style="font-size: 18px; color: #cc0a0a;"></i>
+                                         </span>
+                                     </div>
+                                     <input type="hidden" name="signature_data" id="signature_data">
+                                 </div>
 
-                                     <!-- Looping pertanyaan untuk sub dimensi ini -->
-                                     <?php if (!empty($dimensi['pertanyaan'])): ?>
-                                         <?php foreach ($dimensi['pertanyaan'] as $pertanyaan): ?>
-                                             <div class="col-lg-12 mb-20">
-                                                 <label style="font-weight: bold; margin-bottom: 5px;">
-                                                     <?= esc($pertanyaan['id']) ?>. <?= esc($pertanyaan['pertanyaan']) ?>
-                                                 </label>
-                                                 <div class="tp-contact-single-input" style="display: flex; align-items: center;">
-                                                     <div style="margin-right: 20px; display: flex; align-items: center;">
-                                                         <input type="radio" id="pertanyaan_<?= esc($pertanyaan['id']) ?>_1" name="pertanyaan_<?= esc($pertanyaan['id']) ?>" value="1" style="margin-top: 5px;">
-                                                         <label for="pertanyaan_<?= esc($pertanyaan['id']) ?>_1" style="margin-left: 5px;">1</label>
-                                                     </div>
-                                                     <div style="margin-right: 20px; display: flex; align-items: center;">
-                                                         <input type="radio" id="pertanyaan_<?= esc($pertanyaan['id']) ?>_2" name="pertanyaan_<?= esc($pertanyaan['id']) ?>" value="2" style="margin-top: 5px;">
-                                                         <label for="pertanyaan_<?= esc($pertanyaan['id']) ?>_2" style="margin-left: 5px;">2</label>
-                                                     </div>
-                                                     <div style="margin-right: 20px; display: flex; align-items: center;">
-                                                         <input type="radio" id="pertanyaan_<?= esc($pertanyaan['id']) ?>_3" name="pertanyaan_<?= esc($pertanyaan['id']) ?>" value="3" style="margin-top: 5px;">
-                                                         <label for="pertanyaan_<?= esc($pertanyaan['id']) ?>_3" style="margin-left: 5px;">3</label>
-                                                     </div>
-                                                     <div style="margin-right: 20px; display: flex; align-items: center;">
-                                                         <input type="radio" id="pertanyaan_<?= esc($pertanyaan['id']) ?>_4" name="pertanyaan_<?= esc($pertanyaan['id']) ?>" value="4" style="margin-top: 5px;">
-                                                         <label for="pertanyaan_<?= esc($pertanyaan['id']) ?>_4" style="margin-left: 5px;">4</label>
-                                                     </div>
-                                                     <div style="display: flex; align-items: center;">
-                                                         <input type="radio" id="pertanyaan_<?= esc($pertanyaan['id']) ?>_9" name="pertanyaan_<?= esc($pertanyaan['id']) ?>" value="9" style="margin-top: 5px;">
-                                                         <label for="pertanyaan_<?= esc($pertanyaan['id']) ?>_9" style="margin-left: 5px;">9</label>
+                                 <!-- Button -->
+                                 <div class="col-lg-12 mb-20">
+                                     <div class="tp-contact-btn-2">
+                                         <button type="button" id="btn-selanjutnya" class="tp-btn">Selanjutnya</button>
+                                         <p class="ajax-response"></p>
+                                     </div>
+                                 </div>
+                             </div>
+
+                             <div id="kuisioner" class="hidden">
+                                 <p>Kuesioner ini mengukur persepsi Anda sebagai masyarakat terhadap implementasi program smart city yang dilaksanakan oleh Pemerintah Daerah. Silakan klik angka dengan skala nilai yang sesuai. (1 = “Tidak Setuju”; 2 = “Kurang Setuju”; 3 = “Setuju”; dan 4 = “Sangat Setuju”; atau 9 bila tidak menjawab)</p>
+                                 <?php
+                                    // Array untuk mengonversi angka ke angka Romawi
+                                    $roman_numbers = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']; // Tambah lebih banyak jika diperlukan
+                                    ?>
+
+                                 <?php if (!empty($sub_dimensi)): ?>
+                                     <?php foreach ($sub_dimensi as $index => $dimensi): ?>
+                                         <label style="font-weight: bold; margin-bottom: 8px;">
+                                             Sub Dimensi <?= isset($roman_numbers[$index]) ? esc($roman_numbers[$index]) : ($index + 1) ?>: <?= esc($dimensi['sub_dimensi']) ?>
+                                         </label>
+                                         <br>
+                                         <input type="hidden" name="id_subdimensi[]" value="<?= esc($dimensi['id']) ?>">
+
+                                         <!-- Looping pertanyaan untuk sub dimensi ini -->
+                                         <?php if (!empty($dimensi['pertanyaan'])): ?>
+                                             <?php $nomor = 1; // Inisialisasi nomor urut pertanyaan 
+                                                ?>
+                                             <?php foreach ($dimensi['pertanyaan'] as $pertanyaan): ?>
+                                                 <div class="col-lg-12 mb-20">
+                                                     <!-- Tampilkan nomor urut pertanyaan -->
+                                                     <label style="margin-bottom: 2px;">
+                                                         <?= $nomor++ ?>. <?= esc($pertanyaan['pertanyaan']) ?>
+                                                     </label>
+                                                     <div class="tp-contact-single-input" style="display: flex; align-items: center; margin-top: -19px;">
+                                                         <?php for ($i = 1; $i <= 4; $i++): ?>
+                                                             <div style="margin-right: 20px; display: flex; align-items: center;">
+                                                                 <input type="radio" id="pertanyaan_<?= esc($pertanyaan['id']) ?>_<?= $i ?>" name="pertanyaan_<?= esc($pertanyaan['id']) ?>" value="option_<?= $i ?>" style="margin-top: 5px;">
+                                                                 <label for="pertanyaan_<?= esc($pertanyaan['id']) ?>_<?= $i ?>" style="margin-left: 5px;"><?= esc($pertanyaan['option_' . $i]) ?></label>
+                                                             </div>
+                                                         <?php endfor; ?>
+                                                         <!-- Tambahan untuk option_9 jika diperlukan -->
+                                                         <div style="display: flex; align-items: center;">
+                                                             <input type="radio" id="pertanyaan_<?= esc($pertanyaan['id']) ?>_9" name="pertanyaan_<?= esc($pertanyaan['id']) ?>" value="option_9" style="margin-top: 5px;">
+                                                             <label for="pertanyaan_<?= esc($pertanyaan['id']) ?>_9" style="margin-left: 5px;"><?= esc($pertanyaan['option_9']) ?></label>
+                                                         </div>
                                                      </div>
                                                  </div>
+                                             <?php endforeach; ?>
+                                         <?php else: ?>
+                                             <div style="margin-left: 20px;">
+                                                 <p>Tidak ada pertanyaan untuk sub dimensi ini.</p>
                                              </div>
-                                         <?php endforeach; ?>
-                                     <?php else: ?>
-                                         <div style="margin-left: 20px;">
-                                             <p>Tidak ada pertanyaan untuk sub dimensi ini.</p>
-                                         </div>
-                                     <?php endif; ?>
-                                     <br>
-                                 <?php endforeach; ?>
-                             <?php else: ?>
-                                 <label style="font-weight: bold; margin-bottom: 5px;">Sub Dimensi: Tidak ada sub dimensi yang tersedia.</label>
-                             <?php endif; ?>
+                                         <?php endif; ?>
+                                     <?php endforeach; ?>
+                                 <?php else: ?>
+                                     <label style="font-weight: bold; margin-bottom: 5px;">Sub Dimensi: Tidak ada sub dimensi yang tersedia.</label>
+                                 <?php endif; ?>
 
-                             <br>
-                             <div class="col-lg-12 mb-20">
-                                 <div class="tp-contact-btn-2">
-                                     <button type="button" id="btn-kembali" class="tp-btn">Kembali</button>
-                                     <button type="submit" class="tp-btn">Kirim</button>
+                                 <div class="col-lg-12 mb-20">
+                                     <div class="tp-contact-btn-2">
+                                         <button type="button" id="btn-kembali" class="tp-btn">Kembali</button>
+                                         <button type="submit" class="tp-btn">Kirim</button>
+                                     </div>
                                  </div>
                              </div>
-                         </div>
-
-                     </form>
+                         </form>
+                     </div>
                  </div>
              </div>
          </div>
@@ -337,25 +341,34 @@
          const formData = new FormData(this);
 
          // Kirim data ke server di sini (gunakan fetch atau XMLHttpRequest)
-         // Contoh menggunakan fetch:
-         fetch('URL_TUJUAN', {
+         fetch('<?= site_url('form/submit') ?>', {
                  method: 'POST',
                  body: formData
              })
              .then(response => response.json())
              .then(data => {
-                 alert('Kuisioner telah dikirim!');
-                 // Reset form jika perlu
-                 this.reset();
-                 // Kembali ke halaman pertama jika perlu
-                 document.getElementById('kuisioner').classList.add('hidden');
-                 document.getElementById('data-diri').classList.remove('hidden');
+                 // Gunakan SweetAlert2 untuk menampilkan pesan sukses
+                 Swal.fire({
+                     title: 'Berhasil!',
+                     text: 'Kuisioner telah dikirim!',
+                     icon: 'success',
+                     confirmButtonText: 'Ok'
+                 }).then(() => {
+                     location.reload();
+                 });
              })
              .catch(error => {
                  console.error('Error:', error);
-                 alert('Terjadi kesalahan saat mengirim data.');
+                 // Gunakan SweetAlert2 untuk menampilkan pesan kesalahan
+                 Swal.fire({
+                     title: 'Terjadi Kesalahan!',
+                     text: 'Kesalahan saat mengirim data.',
+                     icon: 'error',
+                     confirmButtonText: 'Ok'
+                 });
              });
      });
  </script>
+
 
  <?php $this->endsection() ?>

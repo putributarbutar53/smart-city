@@ -7,8 +7,9 @@
     <div class="container">
         <div class="row gx-0">
             <div class="col-12">
+
                 <div class="tp-section-title-wrapper text-center mb-60 wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s">
-                    <h6 class="tp-section-title tp-section-title-insu" style="margin-top: -60px;">Smart City</h6>
+                    <h6 class="tp-section-title tp-section-title-insu" style="margin-top: -60px;">Formulir Kuisioner Smart City</h6>
                 </div>
             </div>
             <?php foreach ($kategori as $item): ?>
