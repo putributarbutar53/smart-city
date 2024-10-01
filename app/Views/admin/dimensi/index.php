@@ -41,7 +41,11 @@
                             <?php foreach ($sub_dimensi as $index => $item): ?>
                                 <tr>
                                     <td><?= $index + 1 ?></td>
-                                    <td><?= $item['sub_dimensi'] ?></td>
+                                    <td>
+                                        <a href="<?= base_url('admin2053/pertanyaan/' . $item['id']) ?>">
+                                            <?= $item['sub_dimensi'] ?>
+                                        </a>
+                                    </td>
                                     <td>
                                         <button onclick="editdata(<?= $item['id'] ?>)" class="btn btn-primary btn-sm">Edit</button>
                                         <button onclick="deletedata(<?= $item['id'] ?>)" class="btn btn-danger btn-sm">Hapus</button>

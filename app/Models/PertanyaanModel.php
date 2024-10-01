@@ -16,7 +16,8 @@ class PertanyaanModel extends Model
         'option_1',
         'option_2',
         'option_3',
-        'option_4'
+        'option_4',
+        'option_9',
     ];
 
     // Menentukan tipe data yang dikembalikan

@@ -9,6 +9,8 @@ $routes->setAutoRoute(true);
 
 $routes->get('/', 'Home::index');
 $routes->get('form/(:num)', 'Form::index/$1'); // Untuk menangani ID sebagai parameter
+$routes->get('admin2053/pertanyaan/(:num)', 'Admin2053\Pertanyaan::index/$1');
+
 
 // $routes->get('admin2053/subdimensi/(:num)', 'Subdimensi::show/$1');
 $routes->get('admin2053/bagian/(:num)', 'Bagian::index/$1');

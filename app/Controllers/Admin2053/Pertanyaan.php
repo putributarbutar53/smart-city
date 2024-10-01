@@ -5,21 +5,30 @@ namespace App\Controllers\Admin2053;
 use App\Controllers\BaseController;
 use App\Models\KategoriModel;
 use App\Models\SubDimensiModel;
+use App\Models\PertanyaanModel;
 use CodeIgniter\API\ResponseTrait;
 
 class Pertanyaan extends BaseController
 {
-    var $model, $subdimensi, $validation;
+    var $model, $subdimensi, $validation, $pertanyaan;
     use ResponseTrait;
     function __construct()
     {
         $this->model = new KategoriModel();
         $this->subdimensi = new SubDimensiModel();
+        $this->pertanyaan = new PertanyaanModel();
         $this->validation = \Config\Services::validation();
     }
-    function index()
+    function index($id)
     {
-        echo view('admin/pertanyaan/index');
+        $detail = $this->subdimensi->find($id);
+        $data['detail'] = $detail;
+        session()->set('id', $id);
+
+        $data['pertanyaan'] = $this->pertanyaan->where('id_subdimensi', $id)->findAll();
+
+
+        echo view('admin/pertanyaan/index', $data);
     }
     // function bagian($id_kategori)
     // {
@@ -90,24 +99,25 @@ class Pertanyaan extends BaseController
         return $this->response->setJSON($response);
     }
 
-    function add()
+    function add($id)
     {
-        $data['title'] = "Tambah Category";
+        $data['title'] = "Tambah Pertanyaan";
         $data['detail'] = [];
         $data['action'] = "add";
         $data['alert'] = "";
-        $data['tombol'] = "+ Tambah Category";
-        echo view('admin/category/form', $data);
+        $data['id_subdimensi'] = $this->subdimensi->find($id);
+        $data['tombol'] = "+ Tambah Pertanyaan";
+        echo view('admin/pertanyaan/form', $data);
     }
     function edit($id)
     {
         $data['title'] = "Edit Data Category";
-        $data['detail'] = $this->model->find($id);
+        $data['detail'] = $this->pertanyaan->find($id);
         $data['action'] = "update";
         $data['alert'] = "";
         $data['tombol'] = "Update Data";
 
-        echo view('admin/category/form', $data);
+        echo view('admin/pertanyaan/form', $data);
     }
     function detail($id)
     {
@@ -125,19 +135,12 @@ class Pertanyaan extends BaseController
 
         // Validasi input
         $rules = [
-            'nama' => [
+            'pertanyaan' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Kolom Nama harus diisi'
+                    'required' => 'Pertanyaan harus diisi'
                 ]
             ],
-            'img' => [
-                'rules' => 'max_size[img,2048]|ext_in[img,jpg,jpeg,png]',
-                'errors' => [
-                    'max_size' => 'Ukuran file terlalu besar, maksimal 2MB',
-                    'ext_in' => 'Tipe file harus berupa gambar (jpg, jpeg, png)'
-                ]
-            ]
         ];
 
         if (!$this->validate($rules)) {
@@ -146,27 +149,32 @@ class Pertanyaan extends BaseController
             return $this->respond(['errors' => $errors], 400);
         }
 
-        // Ambil data dari request
-        $requestData = $this->request->getPost();
-
-        // Escape data untuk menghindari injection
-        $requestData = esc($requestData);
-
-        // Proses gambar
-        $image = $this->request->getFile('img');
-        if ($image && $image->isValid()) {
-            // Generate nama acak untuk gambar
-            $newName = $image->getRandomName();
-            // Pindahkan file ke direktori yang ditentukan
-            $image->move(ROOTPATH . 'public/' . getenv('dir.uploads.category'), $newName);
-            // Simpan nama file ke dalam array data
-            $requestData['img'] = esc($newName);
-        }
-
         switch ($action) {
             case "add":
+                $rulesadd = [
+                    'pertanyaan' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'field pertanyaan harus diisi'
+                        ]
+                    ],
+                ];
+                if (!$this->validate($rulesadd)) {
+                    $errorsadd = $this->validator->getErrors();
+                    return $this->respond(['errors' => $errorsadd], 400);
+                }
+                $requestData = array(
+                    'id_subdimensi' => $this->request->getVar('id_subdimensi'),
+                    'pertanyaan' => $this->request->getVar('pertanyaan'),
+                    'option_1' => $this->request->getVar('option_1'),
+                    'option_2' => $this->request->getVar('option_2'),
+                    'option_3' => $this->request->getVar('option_3'),
+                    'option_4' => $this->request->getVar('option_4'),
+                    'option_9' => $this->request->getVar('option_9'),
+                );
+
                 // Simpan data baru
-                $this->model->insert($requestData);
+                $this->pertanyaan->insert($requestData);
 
                 // Kembalikan respon sukses
                 return $this->respond([
@@ -175,18 +183,21 @@ class Pertanyaan extends BaseController
                 ], 200);
 
             case "update":
-                $detail = $this->model->find($this->request->getPost('id'));
 
-                if (!$detail) {
-                    return $this->respond([
-                        'status' => 'error',
-                        'message' => 'Data tidak ditemukan'
-                    ], 404);
-                }
+                $requestData = array(
+                    'id_subdimensi' => $this->request->getVar('id_subdimensi'),
+                    'pertanyaan' => $this->request->getVar('pertanyaan'),
+                    'option_1' => $this->request->getVar('option_1'),
+                    'option_2' => $this->request->getVar('option_2'),
+                    'option_3' => $this->request->getVar('option_3'),
+                    'option_4' => $this->request->getVar('option_4'),
+                    'option_9' => $this->request->getVar('option_9'),
+                );
+
+                $detail = $this->pertanyaan->find($this->request->getPost('id'));
 
                 // Perbarui data yang ada
-                $this->model->update($detail['id'], $requestData);
-
+                $this->pertanyaan->update($detail['id'], $requestData);
                 // Kembalikan respon sukses
                 return $this->respond([
                     'status' => 'success',
@@ -197,7 +208,7 @@ class Pertanyaan extends BaseController
 
     function delete($id)
     {
-        $deleted = $this->model->delete($id);
+        $deleted = $this->pertanyaan->delete($id);
         if ($deleted) {
             return $this->respond([
                 'status' => 'success',
