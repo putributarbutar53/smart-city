@@ -16,6 +16,8 @@
     <!-- CSS here -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMp5aUq1fZP8t94zOB/2bL8WaiD5u15GVy3cZc" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link href="<?= base_url() ?>asset/lib/datatables-bs4/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="<?= base_url() ?>asset/lib/datatables.net-responsive-bs4/responsive.bootstrap4.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url() ?>asset/css/bootstrap.css">
     <link rel="stylesheet" href="<?= base_url() ?>asset/css/animate.css">
     <link rel="stylesheet" href="<?= base_url() ?>asset/css/swiper-bundle.css">
@@ -155,6 +157,10 @@
     <!-- JS here -->
     <script src="<?= base_url() ?>asset/js/vendors/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="<?= base_url() ?>asset/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url() ?>asset/lib/datatables-bs4/dataTables.bootstrap4.min.js"></script>
+    <script src="<?= base_url() ?>asset/lib/datatables.net-responsive/dataTables.responsive.js"></script>
+    <script src="<?= base_url() ?>asset/lib/datatables.net-responsive-bs4/responsive.bootstrap4.js"></script>
     <script src="<?= base_url() ?>asset/js/vendors/waypoints.js"></script>
     <script src="<?= base_url() ?>asset/js/bootstrap-bundle.js"></script>
     <script src="<?= base_url() ?>asset/js/meanmenu.js"></script>

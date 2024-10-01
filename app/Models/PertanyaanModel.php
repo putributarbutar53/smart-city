@@ -43,4 +43,9 @@ class PertanyaanModel extends Model
     {
         return $this->find($id);
     }
+    public function getPertanyaanData()
+    {
+        return $this->select('id, id_subdimensi')
+            ->findAll(); // Ambil semua pertanyaan dan subdimensinya
+    }
 }

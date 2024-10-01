@@ -79,39 +79,76 @@ class Form extends BaseController
             'sasaran_layanan' => implode(',', $this->request->getPost('sasaran_layanan')),
         ];
 
-        // Mengupload file selfie
-        $selfieImage = $this->request->getFile('selfie_data');
-        if ($selfieImage && $selfieImage->isValid()) {
-            // Generate nama acak untuk gambar selfie
-            $selfieName = $selfieImage->getRandomName();
-            // Pindahkan file ke direktori yang ditentukan
-            $selfieImage->move(ROOTPATH . 'public/' . getenv('dir.uploads.selfie'), $selfieName);
-            // Simpan nama file selfie ke dalam array data
-            $requestData['selfie_data'] = esc($selfieName);
+        $selfieDataUrl = $this->request->getPost('selfie_data');
+        if ($selfieDataUrl) {
+            list($type, $data) = explode(';', $selfieDataUrl);
+            list(, $data) = explode(',', $data);
+            $data = base64_decode($data);
+            $selfieName = uniqid() . '.png';
+            if (file_put_contents(ROOTPATH . 'public/' . getenv('dir.uploads.selfie') . '/' . $selfieName, $data)) {
+                $requestData['selfie_data'] = esc($selfieName);
+            } else {
+                log_message('error', 'Selfie upload failed.');
+            }
         }
 
-        // Mengupload file tanda tangan
-        $signatureImage = $this->request->getFile('signature_data');
-        if ($signatureImage && $signatureImage->isValid()) {
-            // Generate nama acak untuk gambar tanda tangan
-            $signatureName = $signatureImage->getRandomName();
-            // Pindahkan file ke direktori yang ditentukan
-            $signatureImage->move(ROOTPATH . 'public/' . getenv('dir.uploads.ttd'), $signatureName);
-            // Simpan nama file tanda tangan ke dalam array data
-            $requestData['signature_data'] = esc($signatureName);
+        $signatureDataUrl = $this->request->getPost('signature_data');
+        if ($signatureDataUrl) {
+            list($type, $data) = explode(';', $signatureDataUrl);
+            list(, $data) = explode(',', $data);
+
+            $data = base64_decode($data);
+            $signatureName = uniqid() . '.png';
+            if (file_put_contents(ROOTPATH . 'public/' . getenv('dir.uploads.ttd') . '/' . $signatureName, $data)) {
+                $requestData['signature_data'] = esc($signatureName);
+            } else {
+                log_message('error', 'Signature upload failed.');
+            }
         }
 
-        // Simpan data kuisioner ke dalam database
-        $kuisionerId = $kuisionerModel->insert($requestData); // Simpan dan ambil ID kuisioner
-
-        // Simpan jawaban
-        $pertanyaanIds = $this->request->getPost('pertanyaan_ids'); // Misalnya array dari ID pertanyaan
-        $jawabanArray = $this->request->getPost('jawaban'); // Misalnya array dari jawaban
-
-        foreach ($pertanyaanIds as $index => $pertanyaanId) {
-            $jawabanModel->saveAnswer($kuisionerId, $pertanyaanId, $jawabanArray[$index], $this->request->getPost('id_subdimensi'));
+        try {
+            // Simpan data kuisioner dan ambil ID yang baru saja disimpan
+            $kuisionerId = $kuisionerModel->insert($requestData);
+        } catch (\Exception $e) {
+            log_message('error', 'Database insert failed: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat menyimpan kuisioner.');
         }
 
-        return redirect()->to('/thank-you'); // Arahkan ke halaman terima kasih
+        $idSubdimensiArray = $this->request->getPost('id_subdimensi');
+
+        // Ambil data pertanyaan dari database atau sumber lain
+        $pertanyaanData = $this->pertanyaan->getPertanyaanData(); // Misalnya method ini mengembalikan array pertanyaan
+
+        $pertanyaanPerSubdimensi = [];
+
+        // Mengelompokkan pertanyaan berdasarkan subdimensi
+        foreach ($pertanyaanData as $pertanyaan) {
+            $idSubdimensi = $pertanyaan['id_subdimensi']; // Misalnya kolom ini ada di data pertanyaan
+            $idPertanyaan = $pertanyaan['id']; // Misalnya kolom ini ada di data pertanyaan
+
+            if (!isset($pertanyaanPerSubdimensi[$idSubdimensi])) {
+                $pertanyaanPerSubdimensi[$idSubdimensi] = [];
+            }
+
+            $pertanyaanPerSubdimensi[$idSubdimensi][] = $idPertanyaan;
+        }
+
+        if (!empty($idSubdimensiArray)) {
+            foreach ($idSubdimensiArray as $idSubdimensi) {
+                foreach ($this->request->getPost() as $key => $jawaban) {
+                    if (strpos($key, 'pertanyaan_') === 0) {
+                        $pertanyaanId = str_replace('pertanyaan_', '', $key);
+
+                        if (!empty($jawaban)) {
+                            if (in_array($pertanyaanId, $pertanyaanPerSubdimensi[$idSubdimensi])) {
+                                $jawabanModel->saveAnswer($kuisionerId, $pertanyaanId, $jawaban, $idSubdimensi);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return redirect()->to('/thank-you');
     }
 }

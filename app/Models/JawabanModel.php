@@ -13,23 +13,26 @@ class JawabanModel extends Model
         'pertanyaan_id',
         'id_subdimensi',
         'jawaban',
+        'created_at',  // Menambahkan kolom created_at
+        'updated_at',  // Menambahkan kolom updated_at
     ];
 
-    public function saveAnswer($kuisionerId, $pertanyaanId, $jawaban, $idSubdimensi = null)
-    {
-        // Buat array data untuk disimpan
+    protected $useTimestamps = true; // Mengaktifkan penggunaan timestamps
+
+    public function saveAnswer(
+        $kuisionerId,
+        $pertanyaanId,
+        $jawaban,
+        $idSubdimensi
+    ) {
         $data = [
             'kuisioner_id' => $kuisionerId,
             'pertanyaan_id' => $pertanyaanId,
             'jawaban' => $jawaban,
+            'id_subdimensi' => $idSubdimensi,
         ];
 
-        // Tambahkan id_subdimensi jika ada
-        if ($idSubdimensi !== null) {
-            $data['id_subdimensi'] = $idSubdimensi;
-        }
-
-        // Menyimpan jawaban ke database
-        return $this->insert($data); // Kembalikan ID dari jawaban yang disimpan
+        // Pastikan untuk memanggil insert() pada model ini
+        return $this->insert($data);
     }
 }

@@ -11,7 +11,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-lg-8">
-                <h3 class="mb-0">Pertanyaan</h3>
+                <h3 class="mb-0">Hasil Survey Smart City</h3>
             </div>
         </div>
     </div>
@@ -33,11 +33,12 @@
                                 <p class="card-text"><?= $item['desc'] ?></p>
                             </div>
                             <div class="card-body text-center">
-                                <a class="card-link" href="<?= site_url('admin2053/category/bagian/' . $item['id']) ?>">Buat Pertanyaan</a>
+                                <a class="card-link" href="<?= site_url('admin2053/hasil/detail/' . $item['id']) ?>">Lihat Hasil</a>
                             </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
+
             </div>
         </div>
     </div>
