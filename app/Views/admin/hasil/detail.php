@@ -18,6 +18,10 @@
 </div>
 <div class="card mb-3">
     <div class="card-header">
+        <a href="<?= site_url('admin0503/hasil/exportToExcel') ?>" class="btn btn-sm btn-falcon-success">
+            <i class="fas fa-file-excel"></i> Lihat di Spreadsheet
+        </a>
+        <br><br>
         <div class="row flex-between-center">
             <div class="col">
                 <div class="table-responsive">

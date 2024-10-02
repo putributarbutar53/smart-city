@@ -20,6 +20,7 @@
 
 <div class="card mb-3">
     <div class="card-body bg-light">
+
         <div class="container">
             <div class="row">
                 <?php foreach ($kategori as $item): ?>

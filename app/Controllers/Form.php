@@ -31,7 +31,6 @@ class Form extends BaseController
     }
     public function index($id = null)
     {
-        helper('RomanHelper');
         if ($id) {
             // Ambil kategori berdasarkan ID
             $data['kategori'] = $this->category->getKategoriById($id);
