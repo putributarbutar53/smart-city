@@ -84,9 +84,9 @@
                                                  <p>Tidak ada layanan yang tersedia untuk kategori ini.</p>
                                              <?php endif; ?>
                                              <label style="display: flex; align-items: center;">
-                                                 <input type="checkbox" name="nama_layanan[]" value="Lainnya" style="margin-right: 5px;" id="lainnya-checkbox"> Lainnya
+                                                 <input type="checkbox" style="margin-right: 5px;" id="lainnya-checkbox"> Lainnya
                                              </label>
-                                             <input type="text" name="nama_layanan_lain" id="nama_layanan_lain" placeholder="Sebutkan Layanan Lainnya" style="height: 40px; display: none; width: 100%;">
+                                             <input type="text" id="nama_layanan_lain" placeholder="Sebutkan Layanan Lainnya" style="height: 40px; display: none; width: 100%;">
                                          </div>
                                      </div>
                                  </div>
@@ -106,12 +106,13 @@
                                                  <p>Tidak ada sasaran yang tersedia untuk kategori ini.</p>
                                              <?php endif; ?>
                                              <label style="display: flex; align-items: center;">
-                                                 <input type="checkbox" name="sasaran_layanan[]" value="Lainnya" style="margin-right: 5px;" id="sasaran-lainnya-checkbox"> Lainnya
+                                                 <input type="checkbox" style="margin-right: 5px;" id="sasaran-lainnya-checkbox"> Lainnya
                                              </label>
-                                             <input type="text" name="sasaran_lain" id="sasaran_lain" placeholder="Sebutkan Sasaran Lainnya" style="height: 40px; display: none; width: 100%;">
+                                             <input type="text" id="sasaran_lain" placeholder="Sebutkan Sasaran Lainnya" style="height: 40px; display: none; width: 100%;">
                                          </div>
                                      </div>
                                  </div>
+
                                  <!-- Selfie -->
                                  <div class="col-lg-12 mb-20">
                                      <label style="font-weight: bold; margin-bottom: 5px;">Ambil Selfie: </label>
@@ -150,7 +151,6 @@
                              <div id="kuisioner" class="hidden">
                                  <p>Kuesioner ini mengukur persepsi Anda sebagai masyarakat terhadap implementasi program smart city yang dilaksanakan oleh Pemerintah Daerah. Silakan klik angka dengan skala nilai yang sesuai. (1 = “Tidak Setuju”; 2 = “Kurang Setuju”; 3 = “Setuju”; dan 4 = “Sangat Setuju”; atau 9 bila tidak menjawab)</p>
                                  <?php
-                                    // Array untuk mengonversi angka ke angka Romawi
                                     $roman_numbers = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']; // Tambah lebih banyak jika diperlukan
                                     ?>
 
@@ -218,14 +218,12 @@
      const context = canvas.getContext('2d');
      let isDrawing = false;
 
-     // Mengatur latar belakang canvas
      function setCanvasBackground() {
          context.fillStyle = "white";
          context.fillRect(0, 0, canvas.width, canvas.height);
      }
      setCanvasBackground();
 
-     // Menggambar di canvas
      canvas.addEventListener('mousedown', (event) => {
          isDrawing = true;
          context.beginPath();
@@ -297,30 +295,47 @@
      };
  </script>
  <script>
-     // Mendapatkan elemen checkbox dan input teks
      const lainnyaCheckbox = document.getElementById('lainnya-checkbox');
      const namaLayananLain = document.getElementById('nama_layanan_lain');
 
      const sasaranLainnyaCheckbox = document.getElementById('sasaran-lainnya-checkbox');
      const sasaranLain = document.getElementById('sasaran_lain');
+     const sasaranLayanan = document.getElementById('sasaran_layanan');
 
-     // Menangani klik pada checkbox "Lainnya" untuk layanan
      lainnyaCheckbox.addEventListener('change', function() {
          if (lainnyaCheckbox.checked) {
-             namaLayananLain.style.display = 'block'; // Tampilkan input jika dicentang
+             namaLayananLain.style.display = 'block';
          } else {
-             namaLayananLain.style.display = 'none'; // Sembunyikan input jika tidak dicentang
-             namaLayananLain.value = ''; // Kosongkan nilai input
+             namaLayananLain.style.display = 'none';
+             namaLayananLain.value = '';
          }
      });
 
-     // Menangani klik pada checkbox "Lainnya" untuk sasaran
      sasaranLainnyaCheckbox.addEventListener('change', function() {
          if (sasaranLainnyaCheckbox.checked) {
-             sasaranLain.style.display = 'block'; // Tampilkan input jika dicentang
+             sasaranLain.style.display = 'block';
          } else {
-             sasaranLain.style.display = 'none'; // Sembunyikan input jika tidak dicentang
-             sasaranLain.value = ''; // Kosongkan nilai input
+             sasaranLain.style.display = 'none';
+             sasaranLain.value = '';
+         }
+     });
+
+     document.querySelector('form').addEventListener('submit', function(event) {
+
+         if (lainnyaCheckbox.checked && namaLayananLain.value.trim() !== "") {
+             const hiddenInputLayanan = document.createElement('input');
+             hiddenInputLayanan.type = 'hidden';
+             hiddenInputLayanan.name = 'nama_layanan[]';
+             hiddenInputLayanan.value = namaLayananLain.value.trim();
+             this.appendChild(hiddenInputLayanan);
+         }
+
+         if (sasaranLainnyaCheckbox.checked && sasaranLain.value.trim() !== "") {
+             const hiddenInputSasaran = document.createElement('input');
+             hiddenInputSasaran.type = 'hidden';
+             hiddenInputSasaran.name = 'sasaran_layanan[]';
+             hiddenInputSasaran.value = sasaranLain.value.trim();
+             this.appendChild(hiddenInputSasaran);
          }
      });
  </script>
@@ -369,6 +384,4 @@
              });
      });
  </script>
-
-
  <?php $this->endsection() ?>

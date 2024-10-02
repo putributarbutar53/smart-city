@@ -21,7 +21,7 @@
         <a href="<?= site_url('admin0503/hasil/exportToExcel') ?>" class="btn btn-sm btn-falcon-success">
             <i class="fas fa-file-excel"></i> Lihat di Spreadsheet
         </a>
-        <a href="<?= site_url('admin0503/hasil/exportToExcel') ?>" class="btn btn-sm btn-falcon-danger">
+        <a href="<?= site_url('admin2053/hasil/diagram/' . $detail['id']) ?>" class="btn btn-sm btn-falcon-danger">
             <i class="fas fa-chart-pie"></i> Lihat Diagram
         </a>
         <br><br>
