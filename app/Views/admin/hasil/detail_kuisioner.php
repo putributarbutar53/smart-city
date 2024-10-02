@@ -11,7 +11,9 @@
                 <p class="fs--1 mb-0"><?= esc($kuisioner['email']) ?></p>
             </div>
         </div>
-
+        <div class="card-footer bg-light">
+            <p class="fs--1 mb-0"><strong>Notes: </strong>1 = “Tidak Setuju”; 2 = “Kurang Setuju”; 3 = “Setuju”; dan 4 = “Sangat Setuju”; atau 9 bila tidak menjawab</p>
+        </div>
         <div class="table-responsive mt-4 fs--1">
             <?php if (!empty($sub_dimensi)): ?>
                 <?php foreach ($sub_dimensi as $index => $dimensi): ?>
@@ -82,8 +84,6 @@
             <?php endif; ?>
         </div>
     </div>
-    <div class="card-footer bg-light">
-        <p class="fs--1 mb-0"><strong>Notes: </strong>1 = “Tidak Setuju”; 2 = “Kurang Setuju”; 3 = “Setuju”; dan 4 = “Sangat Setuju”; atau 9 bila tidak menjawab</p>
-    </div>
+
 </div>
 <?php $this->endsection() ?>
