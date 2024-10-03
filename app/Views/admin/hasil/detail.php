@@ -33,6 +33,8 @@
                             <tr>
                                 <th>#</th> <!-- Kolom baru untuk tombol fas fa-eye -->
                                 <th class="sort">Nama</th>
+                                <th class="sort"><i class="fas fa-camera sort-icon"></th>
+                                <th class="sort"><i class="fas fa-signature"></i></th>
                                 <th class="sort">Email</th>
                                 <th class="sort">JK</th>
                                 <th class="sort">Umur</th>
@@ -51,6 +53,25 @@
                                             </a>
                                         </td>
                                         <td><?= esc($item['nama']) ?></td>
+                                        <td>
+                                            <?php if (!empty($item['selfie_data'])): ?>
+                                                <a href="<?= base_url() . getenv('dir.uploads.selfie') . '/' . esc($item['selfie_data']) ?>" data-fancybox data-caption="<?= esc($item['nama']) ?>">
+                                                    <img class="rounded" width="30" src="<?= base_url() . getenv('dir.uploads.selfie') . '/' . esc($item['selfie_data']) ?>" alt="<?= esc($item['nama']) ?>">
+                                                </a>
+                                            <?php else: ?>
+                                                ----
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <?php if (!empty($item['signature_data'])): ?>
+                                                <a href="<?= base_url() . getenv('dir.uploads.ttd') . '/' . esc($item['signature_data']) ?>" data-fancybox data-caption="<?= esc($item['nama']) ?>">
+                                                    <img class="rounded" width="30" src="<?= base_url() . getenv('dir.uploads.ttd') . '/' . esc($item['signature_data']) ?>" alt="<?= esc($item['nama']) ?>">
+                                                </a>
+                                            <?php else: ?>
+                                                ----
+                                            <?php endif; ?>
+                                        </td>
+
                                         <td><?= esc($item['email']) ?></td>
                                         <td><?= esc($item['jenis_kelamin']) ?></td>
                                         <td><?= esc($item['umur']) ?></td>
