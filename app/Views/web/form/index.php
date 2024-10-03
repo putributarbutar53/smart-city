@@ -175,7 +175,7 @@
                                                      <div class="tp-contact-single-input" style="display: flex; align-items: center; margin-top: -19px;">
                                                          <?php for ($i = 1; $i <= 4; $i++): ?>
                                                              <div style="margin-right: 20px; display: flex; align-items: center;">
-                                                                 <input type="radio" id="pertanyaan_<?= esc($pertanyaan['id']) ?>_<?= $i ?>" name="pertanyaan_<?= esc($pertanyaan['id']) ?>" value="option_<?= $i ?>" style="margin-top: 5px;">
+                                                                 <input type="radio" id="pertanyaan_<?= esc($pertanyaan['id']) ?>_<?= $i ?>" name="pertanyaan_<?= esc($pertanyaan['id']) ?>" value="<?= $i ?>" style="margin-top: 5px;">
                                                                  <label for="pertanyaan_<?= esc($pertanyaan['id']) ?>_<?= $i ?>" style="margin-left: 5px;"><?= esc($pertanyaan['option_' . $i]) ?></label>
                                                              </div>
                                                          <?php endfor; ?>

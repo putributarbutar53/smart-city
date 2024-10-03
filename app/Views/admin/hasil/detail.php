@@ -18,8 +18,8 @@
 </div>
 <div class="card mb-3">
     <div class="card-header">
-        <a href="<?= site_url('admin0503/hasil/exportToExcel') ?>" class="btn btn-sm btn-falcon-success">
-            <i class="fas fa-file-excel"></i> Lihat di Spreadsheet
+        <a href="<?= site_url('admin2053/export/exportExcel/' . session('id_kategori')) ?>" class="btn btn-sm btn-falcon-success">
+            <i class="fas fa-file-excel"></i> Export Excel
         </a>
         <a href="<?= site_url('admin0503/hasil/exportToExcel') ?>" class="btn btn-sm btn-falcon-danger">
             <i class="fas fa-chart-pie"></i> Lihat Diagram

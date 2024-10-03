@@ -39,31 +39,31 @@
                                             </td>
                                             <!-- Cek apakah jawaban adalah option_1 -->
                                             <td class="align-middle text-center">
-                                                <?php if ($pertanyaan['jawaban'] === 'option_1'): ?>
+                                                <?php if ($pertanyaan['jawaban'] === '1'): ?>
                                                     <i class="fas fa-check text-success"></i>
                                                 <?php endif; ?>
                                             </td>
                                             <!-- Cek apakah jawaban adalah option_2 -->
                                             <td class="align-middle text-center">
-                                                <?php if ($pertanyaan['jawaban'] === 'option_2'): ?>
+                                                <?php if ($pertanyaan['jawaban'] === '2'): ?>
                                                     <i class="fas fa-check text-success"></i>
                                                 <?php endif; ?>
                                             </td>
                                             <!-- Cek apakah jawaban adalah option_3 -->
                                             <td class="align-middle text-center">
-                                                <?php if ($pertanyaan['jawaban'] === 'option_3'): ?>
+                                                <?php if ($pertanyaan['jawaban'] === '3'): ?>
                                                     <i class="fas fa-check text-success"></i>
                                                 <?php endif; ?>
                                             </td>
                                             <!-- Cek apakah jawaban adalah option_4 -->
                                             <td class="align-middle text-center">
-                                                <?php if ($pertanyaan['jawaban'] === 'option_4'): ?>
+                                                <?php if ($pertanyaan['jawaban'] === '4'): ?>
                                                     <i class="fas fa-check text-success"></i>
                                                 <?php endif; ?>
                                             </td>
                                             <!-- Cek apakah jawaban adalah option_9 -->
                                             <td class="align-middle text-center">
-                                                <?php if ($pertanyaan['jawaban'] === 'option_9'): ?>
+                                                <?php if ($pertanyaan['jawaban'] === '9'): ?>
                                                     <i class="fas fa-check text-success"></i>
                                                 <?php endif; ?>
                                             </td>

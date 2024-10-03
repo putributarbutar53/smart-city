@@ -69,27 +69,53 @@ class Hasil extends BaseController
 
         return view('admin/hasil/detail_kuisioner', $data);
     }
-    public function exportToExcel()
+    public function exportExcel()
     {
-        $data = $this->model->findAll();
+        $kuisionerModel = new KuisionerModel();
+        $data = $kuisionerModel->findAll();
+
+        // Buat instance spreadsheet
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
 
-        $sheet->setCellValue('A1', 'Kolom 1');
-        $sheet->setCellValue('B1', 'Kolom 2');
+        // Set header kolom
+        $sheet->setCellValue('A1', 'ID Kategori');
+        $sheet->setCellValue('B1', 'Nama');
+        $sheet->setCellValue('C1', 'Email');
+        $sheet->setCellValue('D1', 'Jenis Kelamin');
+        $sheet->setCellValue('E1', 'Umur');
+        $sheet->setCellValue('F1', 'Pekerjaan');
+        $sheet->setCellValue('G1', 'Nama Layanan');
+        $sheet->setCellValue('H1', 'Sasaran Layanan');
 
+        // Inisialisasi baris data
         $row = 2;
         foreach ($data as $item) {
-            $sheet->setCellValue('A' . $row, $item['nama']);
-            $sheet->setCellValue('B' . $row, $item['email']);
+            $sheet->setCellValue('A' . $row, $item['id_kategori']);
+            $sheet->setCellValue('B' . $row, $item['nama']);
+            $sheet->setCellValue('C' . $row, $item['email']);
+            $sheet->setCellValue('D' . $row, $item['jenis_kelamin']);
+            $sheet->setCellValue('E' . $row, $item['umur']);
+            $sheet->setCellValue('F' . $row, $item['pekerjaan']);
+            $sheet->setCellValue('G' . $row, $item['nama_layanan']);
+            $sheet->setCellValue('H' . $row, $item['sasaran_layanan']);
+
+            // Tambahkan pertanyaan dan pilihan yang dipilih user
+            $sheet->setCellValue('I' . $row, $item['pertanyaan']);
+            $sheet->setCellValue('J' . $row, $item['option']);
+
             $row++;
         }
 
+        // Buat file Excel
+        $writer = new Xlsx($spreadsheet);
+        $fileName = 'kuisioner_export.xlsx';
+
+        // Set header untuk download
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename="data.xlsx"');
+        header('Content-Disposition: attachment; filename="' . urlencode($fileName) . '"');
         header('Cache-Control: max-age=0');
 
-        $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
         exit;
     }
