@@ -24,15 +24,19 @@
                          <form id="form-kuisioner" method="POST" class="wow fadeInUp" data-wow-delay=".4s" data-wow-duration="1s">
                              <div class="row" id="data-diri">
                                  <div class="col-lg-12 mb-20">
-                                     <label style="font-weight: bold; margin-bottom: 5px;">Nama : </label>
+                                     <label style="font-weight: bold; margin-bottom: 5px;">
+                                         Nama <span style="color: red;">*</span>:
+                                     </label>
                                      <div class="tp-contact-single-input">
-                                         <input type="text" name="nama" placeholder="Masukkan Nama Anda" style="height: 40px;">
+                                         <input type="text" name="nama" class="required" placeholder="Masukkan Nama Anda" style="height: 40px;">
                                      </div>
                                  </div>
                                  <div class="col-lg-12 mb-20">
-                                     <label style="font-weight: bold; margin-bottom: 5px;">Email : </label>
+                                     <label style="font-weight: bold; margin-bottom: 5px;">
+                                         Email <span style="color: red;">*</span>:
+                                     </label>
                                      <div class="tp-contact-single-input">
-                                         <input type="text" name="email" placeholder="Masukkan Email Anda" style="height: 40px;">
+                                         <input type="text" name="email" class="required" placeholder="Masukkan Email Anda" style="height: 40px;">
                                      </div>
                                  </div>
 
@@ -55,24 +59,30 @@
 
                                  <!-- Umur -->
                                  <div class="col-lg-12 mb-20">
-                                     <label style="font-weight: bold; margin-bottom: 5px;">Umur : </label>
+                                     <label style="font-weight: bold; margin-bottom: 5px;">
+                                         Umur <span style="color: red;">*</span>:
+                                     </label>
                                      <div class="tp-contact-single-input">
-                                         <input type="number" name="umur" placeholder="Masukkan Umur Anda" style="height: 40px;">
+                                         <input type="number" name="umur" class="required" placeholder="Masukkan Umur Anda" style="height: 40px;">
                                      </div>
                                  </div>
 
                                  <!-- Pekerjaan -->
                                  <div class="col-lg-12 mb-20">
-                                     <label style="font-weight: bold; margin-bottom: 5px;">Pekerjaan : </label>
+                                     <label style="font-weight: bold; margin-bottom: 5px;">
+                                         Pekerjaan <span style="color: red;">*</span>:
+                                     </label>
                                      <div class="tp-contact-single-input">
-                                         <input type="text" name="pekerjaan" placeholder="Masukkan Pekerjaan Anda" style="height: 40px;">
+                                         <input type="text" name="pekerjaan" class="required" placeholder="Masukkan Pekerjaan Anda" style="height: 40px;">
                                      </div>
                                  </div>
 
                                  <!-- Pilih Layanan/Program -->
                                  <div class="col-lg-12 mb-20">
                                      <div class="tp-contact-single-input">
-                                         <label style="font-weight: bold; margin-bottom: 5px;">Pilih Layanan/Program:</label>
+                                         <label style="font-weight: bold; margin-bottom: 5px;">
+                                             Pilih Layanan/Program <span style="color: red;">*</span>:
+                                         </label>
                                          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
                                              <?php if (!empty($layanan)): ?>
                                                  <?php foreach ($layanan as $item): ?>
@@ -84,9 +94,9 @@
                                                  <p>Tidak ada layanan yang tersedia untuk kategori ini.</p>
                                              <?php endif; ?>
                                              <label style="display: flex; align-items: center;">
-                                                 <input type="checkbox" name="nama_layanan[]" value="Lainnya" style="margin-right: 5px;" id="lainnya-checkbox"> Lainnya
+                                                 <input type="checkbox" style="margin-right: 5px;" id="lainnya-checkbox"> Lainnya
                                              </label>
-                                             <input type="text" name="nama_layanan_lain" id="nama_layanan_lain" placeholder="Sebutkan Layanan Lainnya" style="height: 40px; display: none; width: 100%;">
+                                             <input type="text" id="nama_layanan_lain" placeholder="Sebutkan Layanan Lainnya" style="height: 40px; display: none; width: 100%;">
                                          </div>
                                      </div>
                                  </div>
@@ -94,7 +104,7 @@
                                  <!-- Sasaran Layanan/Program -->
                                  <div class="col-lg-12 mb-20">
                                      <div class="tp-contact-single-input">
-                                         <label style="font-weight: bold; margin-bottom: 5px;">Pilih Sasaran Layanan/Program:</label>
+                                         <label style="font-weight: bold; margin-bottom: 5px;">Pilih Sasaran Layanan/Program <span style="color: red;">*</span>:</label>
                                          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
                                              <?php if (!empty($sasaran)): ?>
                                                  <?php foreach ($sasaran as $item): ?>
@@ -106,15 +116,16 @@
                                                  <p>Tidak ada sasaran yang tersedia untuk kategori ini.</p>
                                              <?php endif; ?>
                                              <label style="display: flex; align-items: center;">
-                                                 <input type="checkbox" name="sasaran_layanan[]" value="Lainnya" style="margin-right: 5px;" id="sasaran-lainnya-checkbox"> Lainnya
+                                                 <input type="checkbox" style="margin-right: 5px;" id="sasaran-lainnya-checkbox"> Lainnya
                                              </label>
-                                             <input type="text" name="sasaran_lain" id="sasaran_lain" placeholder="Sebutkan Sasaran Lainnya" style="height: 40px; display: none; width: 100%;">
+                                             <input type="text" id="sasaran_lain" placeholder="Sebutkan Sasaran Lainnya" style="height: 40px; display: none; width: 100%;">
                                          </div>
                                      </div>
                                  </div>
+
                                  <!-- Selfie -->
                                  <div class="col-lg-12 mb-20">
-                                     <label style="font-weight: bold; margin-bottom: 5px;">Ambil Selfie: </label>
+                                     <label style="font-weight: bold; margin-bottom: 5px;">Ambil Selfie <span style="color: red;">*</span>: </label>
                                      <video id="video" width="100%" height="350px" style="border: 1px solid black;"></video>
                                      <button type="button" id="take-selfie" class="tp-btn" style="margin-top: 10px;">Ambil Selfie</button>
                                      <canvas id="selfie-canvas" style="display:none;"></canvas>
@@ -127,7 +138,7 @@
 
                                  <!-- Tanda Tangan -->
                                  <div class="col-lg-12 mb-20">
-                                     <label style="font-weight: bold; margin-bottom: 5px;">Tanda Tangan: </label>
+                                     <label style="font-weight: bold; margin-bottom: 5px;">Tanda Tangan <span style="color: red;">*</span>: </label>
                                      <br>
                                      <div style="display: flex; align-items: center;">
                                          <canvas id="signature-canvas" width="300" height="110" style="border: 1px solid #000;"></canvas>
@@ -150,7 +161,6 @@
                              <div id="kuisioner" class="hidden">
                                  <p>Kuesioner ini mengukur persepsi Anda sebagai masyarakat terhadap implementasi program smart city yang dilaksanakan oleh Pemerintah Daerah. Silakan klik angka dengan skala nilai yang sesuai. (1 = “Tidak Setuju”; 2 = “Kurang Setuju”; 3 = “Setuju”; dan 4 = “Sangat Setuju”; atau 9 bila tidak menjawab)</p>
                                  <?php
-                                    // Array untuk mengonversi angka ke angka Romawi
                                     $roman_numbers = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']; // Tambah lebih banyak jika diperlukan
                                     ?>
 
@@ -218,14 +228,12 @@
      const context = canvas.getContext('2d');
      let isDrawing = false;
 
-     // Mengatur latar belakang canvas
      function setCanvasBackground() {
          context.fillStyle = "white";
          context.fillRect(0, 0, canvas.width, canvas.height);
      }
      setCanvasBackground();
 
-     // Menggambar di canvas
      canvas.addEventListener('mousedown', (event) => {
          isDrawing = true;
          context.beginPath();
@@ -297,33 +305,109 @@
      };
  </script>
  <script>
-     // Mendapatkan elemen checkbox dan input teks
      const lainnyaCheckbox = document.getElementById('lainnya-checkbox');
      const namaLayananLain = document.getElementById('nama_layanan_lain');
 
      const sasaranLainnyaCheckbox = document.getElementById('sasaran-lainnya-checkbox');
      const sasaranLain = document.getElementById('sasaran_lain');
 
-     // Menangani klik pada checkbox "Lainnya" untuk layanan
      lainnyaCheckbox.addEventListener('change', function() {
          if (lainnyaCheckbox.checked) {
-             namaLayananLain.style.display = 'block'; // Tampilkan input jika dicentang
+             namaLayananLain.style.display = 'block';
          } else {
-             namaLayananLain.style.display = 'none'; // Sembunyikan input jika tidak dicentang
-             namaLayananLain.value = ''; // Kosongkan nilai input
+             namaLayananLain.style.display = 'none';
+             namaLayananLain.value = '';
          }
      });
 
-     // Menangani klik pada checkbox "Lainnya" untuk sasaran
      sasaranLainnyaCheckbox.addEventListener('change', function() {
          if (sasaranLainnyaCheckbox.checked) {
-             sasaranLain.style.display = 'block'; // Tampilkan input jika dicentang
+             sasaranLain.style.display = 'block';
          } else {
-             sasaranLain.style.display = 'none'; // Sembunyikan input jika tidak dicentang
-             sasaranLain.value = ''; // Kosongkan nilai input
+             sasaranLain.style.display = 'none';
+             sasaranLain.value = '';
          }
      });
+
+     document.getElementById('form-kuisioner').addEventListener('submit', function(event) {
+
+         event.preventDefault();
+
+         const layanan = Array.from(document.querySelectorAll('input[name="nama_layanan[]"]:checked'))
+             .map(input => input.value);
+
+         if (lainnyaCheckbox.checked && namaLayananLain.value.trim() !== "") {
+             layanan.push(namaLayananLain.value.trim());
+         }
+
+         layanan.forEach(layananItem => {
+             const hiddenInputLayanan = document.createElement('input');
+             hiddenInputLayanan.type = 'hidden';
+             hiddenInputLayanan.name = 'nama_layanan[]';
+             hiddenInputLayanan.value = layananItem;
+             this.appendChild(hiddenInputLayanan);
+             console.log("Hidden input for layanan added: ", hiddenInputLayanan);
+         });
+
+         const sasaran = Array.from(document.querySelectorAll('input[name="sasaran_layanan[]"]:checked'))
+             .map(input => input.value);
+
+         if (sasaranLainnyaCheckbox.checked && sasaranLain.value.trim() !== "") {
+             sasaran.push(sasaranLain.value.trim());
+         }
+
+         sasaran.forEach(sasaranItem => {
+             const hiddenInputSasaran = document.createElement('input');
+             hiddenInputSasaran.type = 'hidden';
+             hiddenInputSasaran.name = 'sasaran_layanan[]';
+             hiddenInputSasaran.value = sasaranItem;
+             this.appendChild(hiddenInputSasaran);
+             console.log("Hidden input for sasaran added: ", hiddenInputSasaran);
+         });
+     });
  </script>
+
+ <!-- <script>
+     document.getElementById('btn-selanjutnya').addEventListener('click', function() {
+         document.getElementById('data-diri').classList.add('hidden');
+         document.getElementById('kuisioner').classList.remove('hidden');
+     });
+
+     document.getElementById('btn-kembali').addEventListener('click', function() {
+         document.getElementById('kuisioner').classList.add('hidden');
+         document.getElementById('data-diri').classList.remove('hidden');
+     });
+
+     document.getElementById('form-kuisioner').addEventListener('submit', function(e) {
+         e.preventDefault();
+         const formData = new FormData(this);
+
+         fetch('<?= site_url('form/submit') ?>', {
+                 method: 'POST',
+                 body: formData
+             })
+             .then(response => response.json())
+             .then(data => {
+                 Swal.fire({
+                     title: 'Berhasil!',
+                     text: 'Kuisioner telah dikirim!',
+                     icon: 'success',
+                     confirmButtonText: 'Ok'
+                 }).then(() => {
+                     location.reload();
+                 });
+             })
+             .catch(error => {
+                 console.error('Error:', error);
+                 Swal.fire({
+                     title: 'Terjadi Kesalahan!',
+                     text: 'Kesalahan saat mengirim data.',
+                     icon: 'error',
+                     confirmButtonText: 'Ok'
+                 });
+             });
+     });
+ </script> -->
  <script>
      document.getElementById('btn-selanjutnya').addEventListener('click', function() {
          document.getElementById('data-diri').classList.add('hidden');
@@ -337,17 +421,70 @@
 
      document.getElementById('form-kuisioner').addEventListener('submit', function(e) {
          e.preventDefault();
-         // Ambil data dari form
+
+         const requiredFields = document.querySelectorAll('#form-kuisioner .required');
+         let isValid = true;
+         let firstInvalidField = null;
+         let invalidFields = [];
+
+         requiredFields.forEach(field => {
+             if (field.value.trim() === '') {
+                 isValid = false;
+                 field.classList.add('error');
+                 invalidFields.push(field.placeholder || field.name);
+                 if (!firstInvalidField) {
+                     firstInvalidField = field;
+                 }
+             } else {
+                 field.classList.remove('error');
+             }
+         });
+
+         const selfieData = document.getElementById('selfie_data').value;
+         if (!selfieData) {
+             isValid = false;
+             Swal.fire({
+                 title: 'Perhatian!',
+                 text: 'Harap ambil selfie sebelum mengirim form.',
+                 icon: 'warning',
+                 confirmButtonText: 'Ok'
+             });
+             return;
+         }
+         const signatureData = document.getElementById('signature_data').value;
+         if (!signatureData) {
+             isValid = false;
+             Swal.fire({
+                 title: 'Perhatian!',
+                 text: 'Harap buat tanda tangan sebelum mengirim form.',
+                 icon: 'warning',
+                 confirmButtonText: 'Ok'
+             });
+             return;
+         }
+
+         if (!isValid) {
+             const errorMessage = `Harap isi semua field yang wajib diisi: ${invalidFields.join(', ')}`;
+             Swal.fire({
+                 title: 'Perhatian!',
+                 text: errorMessage,
+                 icon: 'warning',
+                 confirmButtonText: 'Ok'
+             });
+             firstInvalidField.scrollIntoView({
+                 behavior: 'smooth'
+             });
+             return;
+         }
+
          const formData = new FormData(this);
 
-         // Kirim data ke server di sini (gunakan fetch atau XMLHttpRequest)
          fetch('<?= site_url('form/submit') ?>', {
                  method: 'POST',
                  body: formData
              })
              .then(response => response.json())
              .then(data => {
-                 // Gunakan SweetAlert2 untuk menampilkan pesan sukses
                  Swal.fire({
                      title: 'Berhasil!',
                      text: 'Kuisioner telah dikirim!',
@@ -359,7 +496,6 @@
              })
              .catch(error => {
                  console.error('Error:', error);
-                 // Gunakan SweetAlert2 untuk menampilkan pesan kesalahan
                  Swal.fire({
                      title: 'Terjadi Kesalahan!',
                      text: 'Kesalahan saat mengirim data.',
@@ -369,6 +505,5 @@
              });
      });
  </script>
-
 
  <?php $this->endsection() ?>

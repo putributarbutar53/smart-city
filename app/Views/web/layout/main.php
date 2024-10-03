@@ -157,6 +157,7 @@
     <!-- JS here -->
     <script src="<?= base_url() ?>asset/js/vendors/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="<?= base_url() ?>asset/lib/datatables/js/jquery.dataTables.min.js"></script>
     <script src="<?= base_url() ?>asset/lib/datatables-bs4/dataTables.bootstrap4.min.js"></script>
     <script src="<?= base_url() ?>asset/lib/datatables.net-responsive/dataTables.responsive.js"></script>

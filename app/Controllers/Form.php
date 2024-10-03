@@ -32,29 +32,20 @@ class Form extends BaseController
     public function index($id = null)
     {
         if ($id) {
-            // Ambil kategori berdasarkan ID
             $data['kategori'] = $this->category->getKategoriById($id);
-
-            // Jika kategori tidak ditemukan
             if (!$data['kategori']) {
                 return redirect()->to('error_page');
             }
-
-            // Ambil layanan berdasarkan id_kategori yang dipilih
             $data['layanan'] = $this->layanan->getLayananByKategoriId($id);
 
-            // Ambil sasaran berdasarkan id_kategori yang dipilih
             $data['sasaran'] = $this->sasaran->getSasaranByKategoriId($id);
 
-            // Ambil sub dimensi berdasarkan id_kategori yang dipilih
             $data['sub_dimensi'] = $this->dimensi->getSubDimensiByKategoriId($id);
 
-            // Loop untuk setiap sub dimensi dan ambil pertanyaannya
             foreach ($data['sub_dimensi'] as $key => $dimensi) {
                 $data['sub_dimensi'][$key]['pertanyaan'] = $this->pertanyaan->getPertanyaanBySubDimensiId($dimensi['id']);
             }
         } else {
-            // Ambil semua kategori jika tidak ada ID
             $data['kategori'] = $this->category->getAllKategori();
         }
 
@@ -66,7 +57,6 @@ class Form extends BaseController
         $kuisionerModel = new KuisionerModel();
         $jawabanModel = new JawabanModel();
 
-        // Ambil data dari request
         $requestData = [
             'id_kategori' => $this->request->getPost('id_kategori'),
             'nama' => $this->request->getPost('nama'),
@@ -106,7 +96,6 @@ class Form extends BaseController
         }
 
         try {
-            // Simpan data kuisioner dan ambil ID yang baru saja disimpan
             $kuisionerId = $kuisionerModel->insert($requestData);
         } catch (\Exception $e) {
             log_message('error', 'Database insert failed: ' . $e->getMessage());
@@ -115,15 +104,12 @@ class Form extends BaseController
 
         $idSubdimensiArray = $this->request->getPost('id_subdimensi');
 
-        // Ambil data pertanyaan dari database atau sumber lain
-        $pertanyaanData = $this->pertanyaan->getPertanyaanData(); // Misalnya method ini mengembalikan array pertanyaan
-
+        $pertanyaanData = $this->pertanyaan->getPertanyaanData();
         $pertanyaanPerSubdimensi = [];
 
-        // Mengelompokkan pertanyaan berdasarkan subdimensi
         foreach ($pertanyaanData as $pertanyaan) {
-            $idSubdimensi = $pertanyaan['id_subdimensi']; // Misalnya kolom ini ada di data pertanyaan
-            $idPertanyaan = $pertanyaan['id']; // Misalnya kolom ini ada di data pertanyaan
+            $idSubdimensi = $pertanyaan['id_subdimensi'];
+            $idPertanyaan = $pertanyaan['id'];
 
             if (!isset($pertanyaanPerSubdimensi[$idSubdimensi])) {
                 $pertanyaanPerSubdimensi[$idSubdimensi] = [];
